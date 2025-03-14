@@ -18,6 +18,11 @@ public class Movement : MonoBehaviour
 
     public AudioClip soundEffect; 
     public AudioSource audioSource;
+    public float starDelay;
+    private float nextStarTime = 10f;
+    public Transform ShootingStarSpawnpoint;
+    public GameObject starPrefab;
+    public float starSpeed; 
 
     void Start()
     {
@@ -59,6 +64,12 @@ public class Movement : MonoBehaviour
                 velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime * deceleration);
             }
 
+            if (Time.time > nextStarTime)
+            {
+                ShootingStar();
+                nextStarTime = Time.time + starDelay;
+            }
+
             transform.position += velocity * Time.deltaTime;
         }
     }
@@ -81,5 +92,20 @@ public class Movement : MonoBehaviour
 
             Destroy(bullet, 5f);
         }
+    }
+
+    void ShootingStar(){
+        ShootingStarSpawnpoint.position = new Vector2(Random.Range(-1f, 10f), ShootingStarSpawnpoint.transform.position.y);
+        GameObject star = Instantiate(starPrefab, ShootingStarSpawnpoint.position, ShootingStarSpawnpoint.rotation);
+
+        Rigidbody2D rb = star.GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+            {
+
+                rb.velocity = ShootingStarSpawnpoint.up * starSpeed;  
+            }
+
+            Destroy(star, 10f);
     }
 }
