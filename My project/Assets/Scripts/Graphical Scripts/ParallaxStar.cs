@@ -8,8 +8,8 @@ public class ParallaxStar : MonoBehaviour
     {
         transform.position += Vector3.left * speed * Time.deltaTime;
 
-        // Destroy the star when it moves off-screen
-        if (transform.position.x < -10f) // Adjust this value based on your screen size
+
+        if (transform.position.x < -10f) 
         {
             Destroy(gameObject);
         }

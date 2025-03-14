@@ -96,7 +96,7 @@ public class Movement : MonoBehaviour
 
     void ShootingStar(){
         ShootingStarSpawnpoint.position = new Vector2(Random.Range(-1f, 10f), ShootingStarSpawnpoint.transform.position.y);
-        GameObject star = Instantiate(starPrefab, ShootingStarSpawnpoint.position, ShootingStarSpawnpoint.rotation);
+        GameObject star = Instantiate(starPrefab, ShootingStarSpawnpoint.position, Quaternion.identity);
 
         Rigidbody2D rb = star.GetComponent<Rigidbody2D>();
 
