@@ -43,6 +43,6 @@ public class MainMenuController : MonoBehaviour
     {
         PlayerPrefs.SetInt("PlayerMode", selectedOption);
 
-        SceneManager.LoadScene("Mason Scene");
+        SceneManager.LoadScene("Main Scene");
     }
 }

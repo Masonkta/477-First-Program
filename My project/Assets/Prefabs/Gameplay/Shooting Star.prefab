@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2833612456586340008}
   m_Layer: 0
   m_Name: Shooting Star
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +119,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.016688347, y: 0.014304325}
+  m_Offset: {x: 0.020130232, y: 0.028071836}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -130,7 +130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3533767, y: 0.34860864}
+  m_Size: {x: 0.29142287, y: 0.27518192}
   m_EdgeRadius: 0
 --- !u!50 &3749293131798576700
 Rigidbody2D:
@@ -171,3 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca346fdbf5a9374b8c9d351cced9a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 8750702104086503736, guid: b56cda431c68d434aaa387f72e87b771, type: 3}
+  explosionSound: {fileID: 8300000, guid: 5a0cea0dbe89bd54e8d3138b6d34c29d, type: 3}
+  audioSource: {fileID: 0}

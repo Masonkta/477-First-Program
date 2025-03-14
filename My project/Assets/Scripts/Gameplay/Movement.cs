@@ -106,6 +106,6 @@ public class Movement : MonoBehaviour
                 rb.velocity = ShootingStarSpawnpoint.up * starSpeed;  
             }
 
-            Destroy(star, 10f);
+            Destroy(star, 6f);
     }
 }
