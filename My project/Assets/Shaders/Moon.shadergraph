@@ -306,7 +306,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "12e0c7d73c08494799ec99a27fc72800",
     "m_Id": 0,
-    "m_DisplayName": "Sun Texture",
+    "m_DisplayName": "Moon Texture",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -498,10 +498,10 @@
     "m_Guid": {
         "m_GuidSerialized": "4622fccc-910a-4ef2-86f1-caaaf25bfdad"
     },
-    "m_Name": "Sun Texture",
+    "m_Name": "Moon Texture",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Sun Texture",
-    "m_DefaultReferenceName": "_Sun_Texture",
+    "m_RefNameGeneratedByDisplayName": "Moon Texture",
+    "m_DefaultReferenceName": "_Moon_Texture",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
