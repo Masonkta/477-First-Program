@@ -22,12 +22,14 @@ public class Movement : MonoBehaviour
     private float nextStarTime = 10f;
     public Transform ShootingStarSpawnpoint;
     public GameObject starPrefab;
-    public float starSpeed; 
+    public float starSpeed;
+
+    public ParticleSystem thruster;
 
     void Start()
     {
         gameInstance = FindObjectOfType<Game>();
-        audioSource = FindObjectOfType<AudioSource>();
+        audioSource = Camera.main.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -64,6 +66,8 @@ public class Movement : MonoBehaviour
                 velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime * deceleration);
             }
 
+            AdjustThrusterEffect(inputDirection);
+
             if (Time.time > nextStarTime)
             {
                 ShootingStar();
@@ -71,6 +75,26 @@ public class Movement : MonoBehaviour
             }
 
             transform.position += velocity * Time.deltaTime;
+        }
+    }
+
+    void AdjustThrusterEffect(Vector3 inputDirection)
+    {
+        if (thruster != null)
+        {
+
+            if (inputDirection.x < 0)
+            {
+                thruster.Stop();
+            }
+            else
+            {
+ 
+                if (!thruster.isPlaying)
+                {
+                    thruster.Play();
+                }
+            }
         }
     }
 

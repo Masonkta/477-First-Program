@@ -9,7 +9,7 @@ public class BulletCollision : MonoBehaviour
 
     void Start()
     {
-        audioSource = FindObjectOfType<AudioSource>();
+        audioSource = Camera.main.GetComponent<AudioSource>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
