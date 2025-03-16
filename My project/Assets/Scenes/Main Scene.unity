@@ -764,7 +764,7 @@ Transform:
   m_GameObject: {fileID: 740091799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.65, y: 2.45, z: -0.14293437}
+  m_LocalPosition: {x: -11, y: 2.45, z: -0.14293437}
   m_LocalScale: {x: 1.9, y: 1.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -782,12 +782,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6269c68f635619744b9d6e67c8179d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moon: {fileID: 740091802}
   sun: {fileID: 645622824}
-  moonMaterial: {fileID: 2100000, guid: de5b4235672a63a4fba0b0753794fd1c, type: 2}
-  maxIntensity: 5
-  minIntensity: 5
-  effectRange: 5
-  moveSpeed: 0.2
+  startColor: {r: 0.10980392, g: 0.10980392, b: 0.10980392, a: 1}
+  brightestColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 0}
+  speed: 0.2
 --- !u!1 &780054651
 GameObject:
   m_ObjectHideFlags: 0
