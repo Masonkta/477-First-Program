@@ -18,11 +18,6 @@ public class Movement : MonoBehaviour
 
     public AudioClip soundEffect; 
     public AudioSource audioSource;
-    public float starDelay;
-    private float nextStarTime = 10f;
-    public Transform ShootingStarSpawnpoint;
-    public GameObject starPrefab;
-    public float starSpeed;
 
     public ParticleSystem thruster;
 
@@ -68,12 +63,6 @@ public class Movement : MonoBehaviour
 
             AdjustThrusterEffect(inputDirection);
 
-            if (Time.time > nextStarTime)
-            {
-                ShootingStar();
-                nextStarTime = Time.time + starDelay;
-            }
-
             transform.position += velocity * Time.deltaTime;
         }
     }
@@ -116,20 +105,5 @@ public class Movement : MonoBehaviour
 
             Destroy(bullet, 5f);
         }
-    }
-
-    void ShootingStar(){
-        ShootingStarSpawnpoint.position = new Vector2(Random.Range(-1f, 10f), ShootingStarSpawnpoint.transform.position.y);
-        GameObject star = Instantiate(starPrefab, ShootingStarSpawnpoint.position, Quaternion.identity);
-
-        Rigidbody2D rb = star.GetComponent<Rigidbody2D>();
-
-        if (rb != null)
-            {
-
-                rb.velocity = ShootingStarSpawnpoint.up * starSpeed;  
-            }
-
-            Destroy(star, 6f);
     }
 }
