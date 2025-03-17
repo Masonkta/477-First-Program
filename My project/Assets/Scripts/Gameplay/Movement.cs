@@ -20,6 +20,9 @@ public class Movement : MonoBehaviour
     public AudioSource audioSource;
 
     public ParticleSystem thruster;
+    public bool hasShield = false; 
+    public float shieldDelay = 5f; 
+    private float shieldShutOffTime;
 
     void Start()
     {
@@ -61,6 +64,10 @@ public class Movement : MonoBehaviour
                 velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime * deceleration);
             }
 
+            if (hasShield){
+                shieldShutOffTime = Time.time + shieldDelay;
+                hasShield = false; 
+            }
             AdjustThrusterEffect(inputDirection);
 
             transform.position += velocity * Time.deltaTime;
