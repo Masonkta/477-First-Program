@@ -7,19 +7,22 @@ public class LaserBeamFade : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip laserSound;
 
-    public float chargeTime = 4.0f; // Charging time before firing
+    public float chargeTime = 4.2f; // Charging time before firing
     public float expandDuration = 0.5f; // Laser expansion time
     public float holdDuration = 1.0f; // How long the laser stays visible
-    public float fadeSpeed = 1.5f; // Laser fade-out speed
-    private float startWidth = 0f;
-    private float endWidth = 2f;
+    public float fadeSpeed = 1.5f; // Laser fade out speed
+    private float startWidth = 0f; // Laser Width at start
+    private float endWidth = 6f; // Laser width when fired
 
     public GameObject chargeEffect1; // First charge particle system
     public GameObject chargeEffect2; // Second charge particle system
     private float maxChargeScale = 4f; // Max scale for particles
-    private float targetLocalX = -1.2f; // Target local X position
+    private float targetLocalX = -.5f; // Target local X position
 
-    private void Start()
+    private bool isFiring = false; // Check for currently Firing
+
+
+    private void Awake()
     {
         audioSource = Camera.main.GetComponent<AudioSource>();
         lineRenderer = gameObject.GetComponent<LineRenderer>();
@@ -27,18 +30,23 @@ public class LaserBeamFade : MonoBehaviour
         // Start the laser at zero width
         lineRenderer.startWidth = 0f;
         lineRenderer.endWidth = 0f;
+    }
+    public void FireLaser()
+    {
+        if (isFiring) return; 
+        isFiring = true;
 
-        // Play the charging + firing sound
+        if (chargeEffect1) chargeEffect1.SetActive(true);
+        if (chargeEffect2) chargeEffect2.SetActive(true);
+
         if (audioSource && laserSound)
         {
             audioSource.clip = laserSound;
             audioSource.Play();
         }
 
-        // Start scaling and shifting the charging particles
         StartCoroutine(ScaleAndMoveChargingEffects());
 
-        // After charging completes, fire the laser
         StartCoroutine(WaitForFire());
     }
 
@@ -46,25 +54,23 @@ public class LaserBeamFade : MonoBehaviour
     {
         float elapsedTime = 0f;
 
-        // Get initial local positions
         Vector3 startLocalPos1 = chargeEffect1 ? chargeEffect1.transform.localPosition : Vector3.zero;
         Vector3 startLocalPos2 = chargeEffect2 ? chargeEffect2.transform.localPosition : Vector3.zero;
 
         while (elapsedTime < chargeTime)
         {
             float t = elapsedTime / chargeTime;
-            float newScale = Mathf.Lerp(1f, maxChargeScale, t); // Scale up to maxChargeScale
-            float newX = Mathf.Lerp(startLocalPos1.x, targetLocalX, t); // Move to -2 locally
+            float newScale = Mathf.Lerp(1f, maxChargeScale, t);
+            float newX = Mathf.Lerp(startLocalPos1.x, targetLocalX, t); 
 
-            // Apply new scale & local position
             if (chargeEffect1)
             {
-                chargeEffect1.transform.localScale = new Vector3(newScale, chargeEffect1.transform.localScale.y, chargeEffect1.transform.localScale.z);
+                chargeEffect1.transform.localScale = new Vector3(newScale, newScale, chargeEffect1.transform.localScale.z);
                 chargeEffect1.transform.localPosition = new Vector3(newX, startLocalPos1.y, startLocalPos1.z);
             }
             if (chargeEffect2)
             {
-                chargeEffect2.transform.localScale = new Vector3(newScale, chargeEffect2.transform.localScale.y, chargeEffect2.transform.localScale.z);
+                chargeEffect2.transform.localScale = new Vector3(newScale, newScale, chargeEffect2.transform.localScale.z);
                 chargeEffect2.transform.localPosition = new Vector3(newX, startLocalPos2.y, startLocalPos2.z);
             }
 
@@ -77,7 +83,6 @@ public class LaserBeamFade : MonoBehaviour
     {
         yield return new WaitForSeconds(chargeTime);
 
-        // Disable charge effects when firing
         if (chargeEffect1) chargeEffect1.SetActive(false);
         if (chargeEffect2) chargeEffect2.SetActive(false);
 
@@ -126,5 +131,6 @@ public class LaserBeamFade : MonoBehaviour
 
         lineRenderer.startWidth = 0f;
         lineRenderer.endWidth = 0f;
+        isFiring = false;
     }
 }
