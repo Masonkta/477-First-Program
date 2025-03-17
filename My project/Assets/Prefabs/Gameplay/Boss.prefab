@@ -9904,7 +9904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
   laserSound: {fileID: 8300000, guid: 8b6d9cd9f465d904bbca99cc1c4d6573, type: 3}
-  chargeTime: 4.2
+  chargeTime: 4.5
   expandDuration: 0.5
   holdDuration: 2
   fadeSpeed: 1
