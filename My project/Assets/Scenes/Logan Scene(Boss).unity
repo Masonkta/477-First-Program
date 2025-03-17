@@ -195,9 +195,10 @@ GameObject:
   - component: {fileID: 711128941}
   - component: {fileID: 711128943}
   - component: {fileID: 711128942}
+  - component: {fileID: 711128944}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,11 +234,12 @@ MonoBehaviour:
   bulletSpeed: 0
   playerPos: {fileID: 0}
   nextBulletFire: 0
-  nextLazer: 0
+  nextlaser: 0
+  nextEnemies: 0
   moveSpeed: 0
-  lazerPrefab: {fileID: 0}
-  lazerSpawn: {fileID: 489813695}
-  lazerFireRate: 5
+  laserPrefab: {fileID: 0}
+  laserSpawn: {fileID: 0}
+  laserFireRate: 5
   bulletPrefab: {fileID: 9058156355826230304, guid: 1745c5277b1d2764d835cde85ba99cbf, type: 3}
   bulletSpawn: {fileID: 418384945}
   bulletFireRate: 1
@@ -296,6 +298,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &711128944
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711128940}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1488701449
 GameObject:
   m_ObjectHideFlags: 0

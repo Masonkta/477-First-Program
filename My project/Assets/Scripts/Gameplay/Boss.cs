@@ -8,12 +8,13 @@ public class Boss : MonoBehaviour{
     public float bulletSpeed;
     public Transform playerPos;
     public float nextBulletFire;
-    public float nextLazer;
+    public float nextlaser;
+    public float nextEnemies;
     public float moveSpeed;
 
-    public GameObject lazerPrefab;
-    public Transform lazerSpawn;
-    public float lazerFireRate = 5f;
+    public GameObject laserPrefab;
+    public Transform laserSpawn;
+    public float laserFireRate = 5f;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     public float bulletFireRate = 1f;
@@ -30,26 +31,26 @@ public class Boss : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        var bossMove = this.transform;
-        //if (playerPos.position.y < bulletSpawn.position.y + 3 || playerPos.position.y > bulletSpawn.position.y - 3){
-        //    shoot();
-        //}
+        var bossMove = transform;
 
-        // make mutually exlucisve 
-        if (Time.time >= nextBulletFire) {
+        // Attack timings, prioities: spawning, laser, bullets
+        if (Time.time >= nextEnemies) {
+            spawnDrones();
+            nextEnemies += nextEnemies;
+        } else if (Time.time >= nextlaser) {
+            laser();
+            nextlaser += laserFireRate;
+        } else if (Time.time >= nextBulletFire) {
             shoot();
-            nextBulletFire = Time.time + bulletFireRate;
-        }
-        if (Time.time >= nextLazer) {
-            lazer();
-            nextLazer = Time.time + lazerFireRate;
+            nextBulletFire += bulletFireRate;
         }
 
+        // move based on player space, move every 5 seconds
         if (Time.time % 5 == 0) {
-            //bossMove.position.y = playerPos.position.y;
-            // move based on player space, move every 5 seconds
+            Vector3 playerY = new Vector3(0, playerPos.position.y, 0);
+            bossMove.Translate(playerY * moveSpeed * Time.deltaTime);
         }
-    }
+    }   
 
 
     void shoot() {
@@ -64,14 +65,18 @@ public class Boss : MonoBehaviour{
     }
 
 
-    void lazer() {
-        GameObject laz = Instantiate(lazerPrefab, lazerSpawn);
-        Rigidbody2D rb = laz.GetComponent<Rigidbody2D>();
+    void laser() {
+        GameObject las = Instantiate(laserPrefab, laserSpawn);
+        Rigidbody2D rb = las.GetComponent<Rigidbody2D>();
 
         if (rb != null) {
             rb.velocity = bulletSpawn.up * bulletSpeed;
         }
 
-        Destroy(laz, 15f);
+        Destroy(las, 15f);
+    }
+
+    void spawnDrones() {
+
     }
 }
