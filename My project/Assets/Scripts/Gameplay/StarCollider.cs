@@ -13,9 +13,6 @@ public class StarController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Shield")){
-            Debug.Log("Stop the bullet");
-        }
         if (other.CompareTag("Player"))
         {
             Debug.Log("Star hit the player!");
