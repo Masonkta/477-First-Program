@@ -1,82 +1,92 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss : MonoBehaviour{
+    #region publics
     public float health;
     private float maxHealth = 100f;
     public float bulletSpeed;
     public Transform playerPos;
-    public float nextBulletFire;
-    public float nextlaser;
-    public float nextEnemies;
     public float moveSpeed;
-
-    public GameObject laserPrefab;
-    public Transform laserSpawn;
     public float laserFireRate = 5f;
     public GameObject bulletPrefab;
-    public Transform bulletSpawn;
+    public Transform bulletSpawnTop;
+    public Transform bulletSpawnBottom;
     public float bulletFireRate = 1f;
     public GameObject enemyPrefab;
-    public Transform enemySpawn;
+    public Transform enemySpawnTop;
+    public Transform enemySpawnBottom;
     public float enemySpawnFreq = 10f;
+    public float moveInterval;
+    #endregion
 
-
+    #region privates
+    private float nextBulletFire;
+    private float nextlaser;
+    private float nextEnemies;
+    private float moveTimer = 100;
+    private bool lasering;
+    private Vector3 playerY;
+    private Transform bossMove;
+    #endregion
 
     // Start is called before the first frame update
     void Start(){
         health = maxHealth;
+        bossMove = transform;
+        bossMove.Translate(new Vector3(0, 0, 0));
+        //lasering = FindObjectOfType<LaserBeamFade>()
     }
 
     // Update is called once per frame
     void Update(){
-        var bossMove = transform;
-
         // Attack timings, prioities: spawning, laser, bullets
-        if (Time.time >= nextEnemies) {
+        if (nextEnemies > enemySpawnFreq) {
+            print("enemy spawn");
             spawnDrones();
-            nextEnemies += nextEnemies;
-        } else if (Time.time >= nextlaser) {
-            laser();
-            nextlaser += laserFireRate;
-        } else if (Time.time >= nextBulletFire) {
+            nextEnemies = 0;
+            
+        } else if (nextlaser > laserFireRate) {
+            FindObjectOfType<LaserBeamFade>().FireLaser();
+            // pause all movement and other actions
+            nextlaser = 0;
+        } else if (nextBulletFire > bulletFireRate) {
             shoot();
-            nextBulletFire += bulletFireRate;
+            nextBulletFire = 0;
         }
 
         // move based on player space, move every 5 seconds
-        if (Time.time % 5 == 0) {
-            Vector3 playerY = new Vector3(0, playerPos.position.y, 0);
-            bossMove.Translate(playerY * moveSpeed * Time.deltaTime);
+        if (moveTimer > moveInterval) {
+            //playerY = new Vector3(bossMove.transform.position.x, playerPos.position.y, 0);
+            playerY = new Vector3(bossMove.position.x, Random.Range(-2f, 2f), 0);
+
+            moveTimer = 0;
         }
+
+        moveToPlayer();
+        nextEnemies += Time.deltaTime;
+        nextlaser += Time.deltaTime;
+        nextBulletFire += Time.deltaTime;
+        moveTimer += Time.deltaTime;
     }   
 
 
     void shoot() {
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-        if (rb != null) {
-            rb.velocity = bulletSpawn.up * bulletSpeed;
+        if (Math.Abs(playerPos.position.y - bulletSpawnTop.position.y) > Math.Abs(playerPos.position.y - bulletSpawnBottom.position.y)) { 
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnTop);
+        } else {
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnBottom);
         }
-
-        Destroy(bullet, 5f);
-    }
-
-
-    void laser() {
-        GameObject las = Instantiate(laserPrefab, laserSpawn);
-        Rigidbody2D rb = las.GetComponent<Rigidbody2D>();
-
-        if (rb != null) {
-            rb.velocity = bulletSpawn.up * bulletSpeed;
-        }
-
-        Destroy(las, 15f);
+        
     }
 
     void spawnDrones() {
 
+    }
+
+    void moveToPlayer() {
+        bossMove.position = Vector3.MoveTowards(bossMove.position, playerY, moveSpeed * Time.deltaTime);
     }
 }
