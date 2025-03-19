@@ -39,5 +39,9 @@ public class DebrisController : MonoBehaviour
             Destroy(other.gameObject);
         }
 
+        if (other.CompareTag("PowerUp")){
+            Destroy(gameObject);
+        }
+
     }
 }
