@@ -60,7 +60,7 @@ public class Boss : MonoBehaviour{
         // move based on player space, move every 5 seconds
         if (moveTimer > moveInterval) {
             //playerY = new Vector3(bossMove.transform.position.x, playerPos.position.y, 0);
-            playerY = new Vector3(bossMove.position.x, Random.Range(-2f, 2f), 0);
+            playerY = new Vector3(bossMove.position.x, UnityEngine.Random.Range(-2f, 2f), 0);
 
             moveTimer = 0;
         }
