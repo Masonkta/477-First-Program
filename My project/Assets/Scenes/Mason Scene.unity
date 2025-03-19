@@ -1066,6 +1066,8 @@ MonoBehaviour:
   thruster: {fileID: 2015334431}
   hasShield: 0
   shieldDelay: 5
+  shield: {fileID: 0}
+  shieldSpawnPoint: {fileID: 0}
 --- !u!212 &1092345531
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1841,6 +1843,12 @@ MonoBehaviour:
   debris3Prefab: {fileID: 5856194942573014981, guid: 176c9de6607918d4ca72a0f41d69051a, type: 3}
   debrisPrefabs: []
   debrisSpeed: 1
+  nextPowerUpTime: 12
+  PowerUpDelay: 12
+  powerUpSpawnpoint: {fileID: 0}
+  shieldPowerUpPrefab: {fileID: 0}
+  powerUpPrefabs: []
+  powerUpSpeed: 0
 --- !u!4 &1734988325
 Transform:
   m_ObjectHideFlags: 0
