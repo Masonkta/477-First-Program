@@ -122,7 +122,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.09637271}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.5833333}
     oldSize: {x: 0.6, y: 1.2}
     newSize: {x: 0.15, y: 0.3}
     adaptiveTilingThreshold: 0.5
@@ -172,5 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 4164507944013383490, guid: 160a3d8b2865cd44dbceedea9fadbbfd, type: 3}
+  ImpactPrefab: {fileID: 1559002125106275904, guid: a62f378d152387b42bcf6fd1252a87e4, type: 3}
   bulletHitSound: {fileID: 8300000, guid: 0f77f278631e6414bb0a4a1576f3e3fd, type: 3}
+  explosionSound: {fileID: 8300000, guid: 5a0cea0dbe89bd54e8d3138b6d34c29d, type: 3}
   audioSource: {fileID: 0}

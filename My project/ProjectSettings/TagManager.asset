@@ -9,6 +9,7 @@ TagManager:
   - Boss
   - Shield
   - PowerUp
+  - Border
   layers:
   - Default
   - TransparentFX
