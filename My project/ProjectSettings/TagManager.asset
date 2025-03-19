@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Boss
   - Shield
+  - PowerUp
   layers:
   - Default
   - TransparentFX
