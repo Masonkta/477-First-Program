@@ -375,6 +375,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &401460589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 401460590}
+  m_Layer: 0
+  m_Name: Shield Spawn point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &401460590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401460589}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 1.0600001, z: -0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1092345527}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &432772299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,6 +1042,7 @@ Transform:
   m_Children:
   - {fileID: 363445858}
   - {fileID: 2015334429}
+  - {fileID: 401460590}
   m_Father: {fileID: 2041281561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!50 &1092345528
@@ -1064,6 +1096,8 @@ MonoBehaviour:
   thruster: {fileID: 2015334431}
   hasShield: 0
   shieldDelay: 5
+  shield: {fileID: 4013908730682979495, guid: 3c26fef464332e1458ae3be5873ee875, type: 3}
+  shieldSpawnPoint: {fileID: 401460590}
 --- !u!212 &1092345531
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1346,6 +1380,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1456529804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1456529805}
+  m_Layer: 0
+  m_Name: powerUpSpawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1456529805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456529804}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.9335805, w: -0.35836777}
+  m_LocalPosition: {x: 8.98, y: 0.53, z: -0.20000002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1734988325}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -222}
 --- !u!1 &1468248315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,6 +1718,12 @@ MonoBehaviour:
   debris3Prefab: {fileID: 5856194942573014981, guid: 176c9de6607918d4ca72a0f41d69051a, type: 3}
   debrisPrefabs: []
   debrisSpeed: 1
+  nextPowerUpTime: 10
+  PowerUpDelay: 10
+  powerUpSpawnpoint: {fileID: 1456529805}
+  shieldPowerUpPrefab: {fileID: 2900278020961622081, guid: 76ef55e64d3d31445a2258fcba1fdd07, type: 3}
+  powerUpPrefabs: []
+  powerUpSpeed: 0
 --- !u!4 &1734988325
 Transform:
   m_ObjectHideFlags: 0
@@ -1668,6 +1739,7 @@ Transform:
   m_Children:
   - {fileID: 538617149}
   - {fileID: 1072378394}
+  - {fileID: 1456529805}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1754898501

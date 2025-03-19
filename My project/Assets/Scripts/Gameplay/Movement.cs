@@ -18,11 +18,13 @@ public class Movement : MonoBehaviour
 
     public AudioClip soundEffect; 
     public AudioSource audioSource;
-
     public ParticleSystem thruster;
+
     public bool hasShield = false; 
     public float shieldDelay = 5f; 
     private float shieldShutOffTime;
+    public GameObject shield;
+    public Transform shieldSpawnPoint; 
 
     void Start()
     {
@@ -67,6 +69,16 @@ public class Movement : MonoBehaviour
             if (hasShield){
                 shieldShutOffTime = Time.time + shieldDelay;
                 hasShield = false; 
+                GameObject thisshield = Instantiate(shield, shieldSpawnPoint.position, Quaternion.identity);
+                thisshield.transform.SetParent(transform);
+            }
+
+            if (transform.Find("Shield(Clone)")){
+                GameObject myshield = GameObject.Find("Shield(Clone)");
+                myshield.transform.position = shieldSpawnPoint.position;
+                if (shieldShutOffTime < Time.time){
+                    Destroy(myshield);
+                }
             }
             AdjustThrusterEffect(inputDirection);
 
