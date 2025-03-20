@@ -115,7 +115,8 @@ public class PauseMenuController : MonoBehaviour
     void OpenSettings()
     {
         SceneManager.LoadScene("Settings Scene", LoadSceneMode.Additive);
-        TogglePauseMenu();
+        isPaused = !isPaused;
+        pauseMenuUI.SetActive(isPaused);
     }
 
     void DisableControls()
@@ -130,7 +131,14 @@ public class PauseMenuController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Time.timeScale = 1f;
+        if (SceneManager.GetSceneByName("Settings Scene").isLoaded)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
 
