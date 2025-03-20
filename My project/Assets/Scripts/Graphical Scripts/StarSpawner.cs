@@ -12,7 +12,7 @@ public class StarSpawner : MonoBehaviour
     public float minSpeed; // Slowest parallax speed
     public float maxSpeed; // Fastest parallax speed
 
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(SpawnStar());
     }

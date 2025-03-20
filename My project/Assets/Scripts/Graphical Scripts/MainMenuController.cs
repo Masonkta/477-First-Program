@@ -1,33 +1,34 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem; // If using the new Input System
 
 public class MainMenuController : MonoBehaviour
 {
-    public GameObject onePlayerArrow;   
-    public GameObject twoPlayerArrow;   
+    public GameObject onePlayerArrow;
+    public GameObject twoPlayerArrow;
 
     private int selectedOption = 1;
 
     void Start()
     {
+        Time.timeScale = 1f;
         UpdateArrowVisibility();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+        if (Keyboard.current.upArrowKey.wasPressedThisFrame || Keyboard.current.wKey.wasPressedThisFrame)
         {
             selectedOption = 1;
             UpdateArrowVisibility();
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+        else if (Keyboard.current.downArrowKey.wasPressedThisFrame || Keyboard.current.sKey.wasPressedThisFrame)
         {
             selectedOption = 2;
             UpdateArrowVisibility();
         }
 
-
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
         {
             LoadMainScene();
         }
@@ -35,8 +36,11 @@ public class MainMenuController : MonoBehaviour
 
     void UpdateArrowVisibility()
     {
-        onePlayerArrow.SetActive(selectedOption == 1);
-        twoPlayerArrow.SetActive(selectedOption == 2);
+        if (onePlayerArrow != null)
+            onePlayerArrow.SetActive(selectedOption == 1);
+
+        if (twoPlayerArrow != null)
+            twoPlayerArrow.SetActive(selectedOption == 2);
     }
 
     void LoadMainScene()
@@ -45,4 +49,5 @@ public class MainMenuController : MonoBehaviour
 
         SceneManager.LoadScene("Main Scene");
     }
+
 }
