@@ -12017,6 +12017,7 @@ MonoBehaviour:
   - {fileID: 2073949693}
   respawnPoint: {fileID: 1031584384}
   playerPrefab: {fileID: 5019997920302566796, guid: ef2b9fe4f764d1142af75f4b343dfc84, type: 3}
+  ship: {fileID: 5019997920302566796, guid: ef2b9fe4f764d1142af75f4b343dfc84, type: 3}
 --- !u!1 &1456529804
 GameObject:
   m_ObjectHideFlags: 0

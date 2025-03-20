@@ -49,10 +49,12 @@ public class LifeManager : MonoBehaviour
         {
             playerInstance.transform.position = respawnPoint.position;
             playerInstance.SetActive(true);
+            playerInstance.GetComponent<Movement>().hasShield = true;
+
         }
 
         // Instantiate a new player at the respawn point
-        
+
     }
 
     void GameOver()
