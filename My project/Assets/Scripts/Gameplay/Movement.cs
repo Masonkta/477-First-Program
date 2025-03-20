@@ -24,7 +24,7 @@ public class Movement : MonoBehaviour
     public float shieldDelay = 5f; 
     private float shieldShutOffTime;
     public GameObject shield;
-    public Transform shieldSpawnPoint; 
+
 
     void Start()
     {
@@ -66,18 +66,22 @@ public class Movement : MonoBehaviour
                 velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime * deceleration);
             }
 
-            if (hasShield){
+            GameObject shieldObject = transform.Find("Shield Particle System")?.gameObject;
+
+            if (hasShield && shieldObject != null)
+            {
                 shieldShutOffTime = Time.time + shieldDelay;
-                hasShield = false; 
-                GameObject thisshield = Instantiate(shield, shieldSpawnPoint.position, Quaternion.identity);
-                thisshield.transform.SetParent(transform);
+                hasShield = false;
+
+                shieldObject.SetActive(true);
             }
 
-            if (transform.Find("Shield(Clone)")){
-                GameObject myshield = GameObject.Find("Shield(Clone)");
-                myshield.transform.position = shieldSpawnPoint.position;
-                if (shieldShutOffTime < Time.time){
-                    Destroy(myshield);
+            if (shieldObject != null)
+            {
+                if (shieldShutOffTime < Time.time)
+                {
+
+                    shieldObject.SetActive(false);
                 }
             }
             AdjustThrusterEffect(inputDirection);

@@ -15,7 +15,7 @@ public class BulletCollision : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Shield") || other.CompareTag("Border") || other.CompareTag("PowerUp"))
+        if (other.CompareTag("Shield") || other.CompareTag("Border") || other.CompareTag("PowerUp") || other.CompareTag("Player")) 
         {
             return;
         }
