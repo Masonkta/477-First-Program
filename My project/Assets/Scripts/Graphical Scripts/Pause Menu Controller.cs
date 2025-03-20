@@ -20,7 +20,7 @@ public class PauseMenuController : MonoBehaviour
     {
         gameInstance = FindObjectOfType<Game>();
         SceneManager.sceneLoaded += OnSceneLoaded;
-        pauseMenuUI.SetActive(false); // Ensure the pause menu starts hidden
+        pauseMenuUI.SetActive(false);
         EnableControls();
     }
 
@@ -28,7 +28,7 @@ public class PauseMenuController : MonoBehaviour
     {
         if (IsSettingsSceneLoaded())
         {
-            return; // Don't allow input if settings scene is loaded
+            return; 
         }
 
         if ( IsSettingsSceneLoaded() == false && isPaused == false)
@@ -85,15 +85,15 @@ public class PauseMenuController : MonoBehaviour
     {
         switch (selectedOption)
         {
-            case 1: // Resume Game
+            case 1: 
                 EnableControls();
                 TogglePauseMenu();
                 break;
-            case 2: // Open Settings
+            case 2: 
                 DisableControls();
                 OpenSettings();
                 break;
-            case 3: // Exit to Main Scene
+            case 3: 
                 DisableControls();
                 SceneManager.LoadScene("Start Screen");
                 break;
@@ -108,13 +108,12 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = isPaused ? 0 : 1;
         if (playerMovement != null)
         {
-            playerMovement.enabled = !isPaused; // Disable movement script when paused
+            playerMovement.enabled = !isPaused; 
         }
     }
 
     void OpenSettings()
     {
-        // Load settings UI without unloading the game
         SceneManager.LoadScene("Settings Scene", LoadSceneMode.Additive);
         TogglePauseMenu();
     }
@@ -128,7 +127,7 @@ public class PauseMenuController : MonoBehaviour
     }
 
 
-    // Ensure time scale is reset to 1 when a scene is loaded
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Time.timeScale = 1f;
@@ -137,8 +136,6 @@ public class PauseMenuController : MonoBehaviour
 
     bool IsSettingsSceneLoaded()
     {
-        // Check if the "Settings Scene" is currently loaded
         return SceneManager.GetSceneByName("Settings Scene").isLoaded;
     }
-
 }

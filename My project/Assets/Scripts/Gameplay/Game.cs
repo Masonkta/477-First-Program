@@ -13,7 +13,7 @@ public class Game: MonoBehaviour
     }
 
     // Update is called once per frame
-    void OnDestroy()  // This ensures cleanup when the object is destroyed or scene changes
+    void OnDestroy()  
     {
         if (Input != null)
         {

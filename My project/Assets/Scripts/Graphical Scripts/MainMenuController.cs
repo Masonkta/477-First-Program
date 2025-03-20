@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem; // If using the new Input System
+using UnityEngine.InputSystem;
 
 public class MainMenuController : MonoBehaviour
 {

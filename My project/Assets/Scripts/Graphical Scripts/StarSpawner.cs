@@ -9,8 +9,8 @@ public class StarSpawner : MonoBehaviour
     public float maxSpawnInterval;
     public float minScale;
     public float maxScale;
-    public float minSpeed; // Slowest parallax speed
-    public float maxSpeed; // Fastest parallax speed
+    public float minSpeed; 
+    public float maxSpeed; 
 
     void OnEnable()
     {
@@ -21,7 +21,7 @@ public class StarSpawner : MonoBehaviour
     {
         while (true)
         {
-            int starCount = Random.Range(3, 7); // Spawns 3 to 7 stars per interval
+            int starCount = Random.Range(3, 7); 
 
             for (int i = 0; i < starCount; i++)
             {
