@@ -27,6 +27,7 @@ public class FlyingObjects : MonoBehaviour
     public float PowerUpDelay = 12f;
     public Transform powerUpSpawnpoint;
     public GameObject shieldPowerUpPrefab; 
+    public GameObject fireRateUpPowerUpPrefab;
     public List<GameObject> powerUpPrefabs;
     public float powerUpSpeed; 
 
@@ -35,7 +36,7 @@ public class FlyingObjects : MonoBehaviour
         gameInstance = FindObjectOfType<Game>();
         audioSource = Camera.main.GetComponent<AudioSource>();
         debrisPrefabs = new List<GameObject> {debris1Prefab, debris2Prefab, debris3Prefab};
-        powerUpPrefabs = new List<GameObject> {shieldPowerUpPrefab};
+        powerUpPrefabs = new List<GameObject> {shieldPowerUpPrefab, fireRateUpPowerUpPrefab};
         powerUpSpeed = debrisSpeed;
     }
 
