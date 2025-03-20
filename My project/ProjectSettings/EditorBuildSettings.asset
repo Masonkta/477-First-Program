@@ -8,11 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start Screen.unity
     guid: 176f039c4a1320d409d34fa6d721eb30
-  - enabled: 0
-    path: Assets/Scenes/Main Scene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
-    path: Assets/Scenes/Mason Scene.unity
-    guid: 6b5e15bbf31d0f54aa27cef3501ade05
+  - enabled: 1
+    path: Assets/Scenes/Levels/Main Scene.unity
+    guid: 410abd2dcbda1064eb95df3ada3fb798
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 90c66d0eb81957642a6cb93c87f0940d, type: 3}
