@@ -26,11 +26,12 @@ public class StarController : MonoBehaviour
         {
             Debug.Log("Star hit the player!");
 
+            FindObjectOfType<LifeManager>().LoseLife();
+
             GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
             audioSource.PlayOneShot(explosionSound);
 
-            Destroy(other.gameObject);
             Destroy(gameObject);
             Destroy(explosion, 1f);
         }
