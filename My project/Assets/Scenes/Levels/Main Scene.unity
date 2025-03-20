@@ -484,7 +484,7 @@ MonoBehaviour:
   shieldDelay: 5
   shield: {fileID: 4013908730682979495, guid: 3c26fef464332e1458ae3be5873ee875, type: 3}
   hasFireRateUp: 0
-  FireRateUpDelay: 10
+  hasFireRateDown: 0
 --- !u!212 &152782631
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12788,6 +12788,7 @@ MonoBehaviour:
   powerUpSpawnpoint: {fileID: 1456529805}
   shieldPowerUpPrefab: {fileID: 2900278020961622081, guid: 76ef55e64d3d31445a2258fcba1fdd07, type: 3}
   fireRateUpPowerUpPrefab: {fileID: 2900278020961622081, guid: ef3fc8ae5dd3d444c8e18c8b87e55c44, type: 3}
+  fireRateDownPowerUpPrefab: {fileID: 2900278020961622081, guid: f902574a326e1994a92c01733f71faed, type: 3}
   powerUpPrefabs: []
   powerUpSpeed: 0
 --- !u!4 &1734988325

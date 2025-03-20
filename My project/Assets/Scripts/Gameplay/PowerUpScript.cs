@@ -21,6 +21,10 @@ public class PowerUpScript : MonoBehaviour
                 ship.GetComponent<Movement>().hasFireRateUp = true;
                 Destroy(gameObject);
             }
+            if (powerUpType == "FireRateDown"){
+                ship.GetComponent<Movement>().hasFireRateDown = true;
+                Destroy(gameObject);
+            }
         }
     }
 }

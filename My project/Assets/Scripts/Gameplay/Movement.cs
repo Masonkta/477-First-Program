@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
     private float shieldShutOffTime;
     public GameObject shield;
     public bool hasFireRateUp = false;
-    public float FireRateUpDelay = 10f;
+    public bool hasFireRateDown = false;
 
     void Start()
     {
@@ -94,6 +94,15 @@ public class Movement : MonoBehaviour
 
             if (fireRate < defaultFireRate){
                 fireRate += 0.0001f;
+            }
+
+            if (hasFireRateDown){
+                fireRate = 4f;
+                hasFireRateDown = false;
+            }
+
+            if (fireRate > defaultFireRate){
+                fireRate -= 0.0001f;
             }
             AdjustThrusterEffect(inputDirection);
 
