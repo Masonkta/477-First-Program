@@ -10,6 +10,11 @@ public class EnemyCollider : MonoBehaviour
     public GameObject rightBoundary;
     public GameObject TopBoundary;
     public GameObject BottomBoundary;
+    public float nextShotTime = 0.2f;
+    public float shotDelay = 0.2f;
+    public GameObject bulletPrefab; 
+    public Transform spawnPoint; 
+    public float bulletSpeed = 10f;
 
     void Start()
     {
@@ -18,6 +23,15 @@ public class EnemyCollider : MonoBehaviour
         Physics2D.IgnoreCollision(rightBoundary.GetComponent<BoxCollider2D>(), GetComponent<PolygonCollider2D>());
         Physics2D.IgnoreCollision(TopBoundary.GetComponent<BoxCollider2D>(), GetComponent<PolygonCollider2D>());
         Physics2D.IgnoreCollision(BottomBoundary.GetComponent<BoxCollider2D>(), GetComponent<PolygonCollider2D>());
+    }
+
+    void Update()
+    {
+        if (Time.time > nextShotTime)
+            {
+                Shoot();
+                nextShotTime = Time.time + shotDelay;
+            }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -38,6 +52,26 @@ public class EnemyCollider : MonoBehaviour
         if (other.CompareTag("Bullet")){
             Destroy(other.gameObject);
             Destroy(gameObject);
+        }
+    }
+
+    void Shoot()
+    {
+        if (bulletPrefab != null && spawnPoint != null)
+        {
+
+            GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation * Quaternion.Euler(0,0,90));
+
+
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+            if (rb != null)
+            {
+
+                rb.velocity = -spawnPoint.up * bulletSpeed;  
+            }
+
+            Destroy(bullet, 5f);
         }
     }
 }

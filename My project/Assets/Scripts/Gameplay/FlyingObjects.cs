@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -69,7 +70,7 @@ public class FlyingObjects : MonoBehaviour
             }
 
             if (Time.time > nextEnemyFleetTime){
-                EnemyFleet();
+                StartCoroutine(EnemyFleet());
                 nextEnemyFleetTime = Time.time + enemyFleetDelay;
             }
         }
@@ -130,7 +131,7 @@ public class FlyingObjects : MonoBehaviour
         Destroy(powerUp, 25f);
     }
 
-    void EnemyFleet(){
+    IEnumerator EnemyFleet(){
         // Instantiate the enemies.
         List<GameObject> enemies = new List<GameObject>(new GameObject[5]);
         for (int i = 0; i < 5; i++){
@@ -148,6 +149,8 @@ public class FlyingObjects : MonoBehaviour
 
             // Destroy the enemy after 15 seconds.
             Destroy(enemies[i], 10f);
+
+            yield return new WaitForSeconds(0.5f);
         }
     }
 

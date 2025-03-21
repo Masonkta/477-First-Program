@@ -12017,7 +12017,6 @@ MonoBehaviour:
   - {fileID: 2073949693}
   respawnPoint: {fileID: 1031584384}
   playerPrefab: {fileID: 5019997920302566796, guid: ef2b9fe4f764d1142af75f4b343dfc84, type: 3}
-  ship: {fileID: 5019997920302566796, guid: ef2b9fe4f764d1142af75f4b343dfc84, type: 3}
 --- !u!1 &1456529804
 GameObject:
   m_ObjectHideFlags: 0
@@ -12792,6 +12791,11 @@ MonoBehaviour:
   fireRateDownPowerUpPrefab: {fileID: 2900278020961622081, guid: f902574a326e1994a92c01733f71faed, type: 3}
   powerUpPrefabs: []
   powerUpSpeed: 0
+  nextEnemyFleetTime: 20
+  enemyFleetDelay: 20
+  enemySpawnpoint: {fileID: 1072378394}
+  enemyPrefab: {fileID: 2246084954188515008, guid: 2e0ad9a37f185494a893acf921f7bde4, type: 3}
+  enemySpeed: 7
 --- !u!4 &1734988325
 Transform:
   m_ObjectHideFlags: 0

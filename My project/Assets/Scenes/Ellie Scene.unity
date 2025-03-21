@@ -904,7 +904,7 @@ MonoBehaviour:
   shieldDelay: 5
   shield: {fileID: 4013908730682979495, guid: 3c26fef464332e1458ae3be5873ee875, type: 3}
   hasFireRateUp: 0
-  FireRateUpDelay: 10
+  hasFireRateDown: 0
 --- !u!4 &375004012
 Transform:
   m_ObjectHideFlags: 0
@@ -13305,8 +13305,14 @@ MonoBehaviour:
   powerUpSpawnpoint: {fileID: 2079947109}
   shieldPowerUpPrefab: {fileID: 2900278020961622081, guid: 76ef55e64d3d31445a2258fcba1fdd07, type: 3}
   fireRateUpPowerUpPrefab: {fileID: 2900278020961622081, guid: ef3fc8ae5dd3d444c8e18c8b87e55c44, type: 3}
+  fireRateDownPowerUpPrefab: {fileID: 0}
   powerUpPrefabs: []
   powerUpSpeed: 0
+  nextEnemyFleetTime: 20
+  enemyFleetDelay: 20
+  enemySpawnpoint: {fileID: 0}
+  enemyPrefab: {fileID: 0}
+  enemySpeed: 7
 --- !u!4 &2031309915
 Transform:
   m_ObjectHideFlags: 0
