@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 649012789694673367}
   - component: {fileID: 8603005393400559073}
   - component: {fileID: 7224191673003937253}
+  - component: {fileID: 8433753321096480892}
   m_Layer: 0
   m_Name: Enemy Ship
   m_TagString: Untagged
@@ -31,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5686733382147931900}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &649012789694673367
@@ -206,3 +208,58 @@ PolygonCollider2D:
       - {x: 0.14090851, y: 0.21835034}
       - {x: 0.10051238, y: 0.17864697}
   m_UseDelaunayMesh: 0
+--- !u!114 &8433753321096480892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246084954188515008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffb64b341a53234fbc705f544b28719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 4164507944013383490, guid: 160a3d8b2865cd44dbceedea9fadbbfd, type: 3}
+  explosionSound: {fileID: 0}
+  audioSource: {fileID: 0}
+  leftBoundary: {fileID: 873286799391814072, guid: 61812966525a44b499435c20c50f9fe4, type: 3}
+  rightBoundary: {fileID: 6643040351740829556, guid: 937271b18d6fb4d469776682262e9c66, type: 3}
+  TopBoundary: {fileID: 3661034362973231214, guid: 6af93e2fe500ff84093c2791620bc5d0, type: 3}
+  BottomBoundary: {fileID: 4705899043497230213, guid: d6b1c1d3f8928cb4aaed5ed199b62db1, type: 3}
+  nextShotTime: 0.2
+  shotDelay: 0.2
+  bulletPrefab: {fileID: 9058156355826230304, guid: 1745c5277b1d2764d835cde85ba99cbf, type: 3}
+  spawnPoint: {fileID: 5686733382147931900}
+  bulletSpeed: 10
+--- !u!1 &5767574424585463500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5686733382147931900}
+  m_Layer: 0
+  m_Name: bulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5686733382147931900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767574424585463500}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.32999992, y: 0.06, z: 0.062098667}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2822558401177463753}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
