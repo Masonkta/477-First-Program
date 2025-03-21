@@ -102,7 +102,7 @@ public class Movement : MonoBehaviour
             }
 
             if (fireRate > defaultFireRate){
-                fireRate -= 0.0001f;
+                fireRate -= 0.001f;
             }
             AdjustThrusterEffect(inputDirection);
 
