@@ -27,49 +27,53 @@ public class Boss : MonoBehaviour{
     private float nextlaser;
     private float nextEnemies;
     private float moveTimer = 100;
-    private bool lasering;
     private Vector3 playerY;
     private Transform bossMove;
+    private bool inScreen = false;
     #endregion
 
     // Start is called before the first frame update
     void Start(){
         health = maxHealth;
         bossMove = transform;
-        bossMove.Translate(new Vector3(0, 0, 0));
-        //lasering = FindObjectOfType<LaserBeamFade>()
+        bossMove.Translate(new Vector3(8.5f, 0, 0));
+        bossMove.Translate(Vector3.left * 10*moveSpeed * Time.deltaTime);
+        playerPos = transform;
     }
 
     // Update is called once per frame
     void Update(){
-        // Attack timings, prioities: spawning, laser, bullets
-        if (nextEnemies > enemySpawnFreq) {
-            print("enemy spawn");
-            spawnDrones();
-            nextEnemies = 0;
-            
-        } else if (nextlaser > laserFireRate) {
-            FindObjectOfType<LaserBeamFade>().FireLaser();
-            // pause all movement and other actions
-            nextlaser = 0;
-        } else if (nextBulletFire > bulletFireRate) {
-            shoot();
-            nextBulletFire = 0;
+        if (bossMove.position.x == 0) {
+            inScreen = true;
         }
 
-        // move based on player space, move every 5 seconds
-        if (moveTimer > moveInterval) {
-            //playerY = new Vector3(bossMove.transform.position.x, playerPos.position.y, 0);
-            playerY = new Vector3(bossMove.position.x, UnityEngine.Random.Range(-2f, 2f), 0);
+        while (inScreen) {
+            // Attack timings, prioities: spawning, laser, bullets
+            if (nextEnemies > enemySpawnFreq) {
+                spawnDrones();
+                nextEnemies = 0;
+            } else if (nextlaser > laserFireRate) {
+                FindObjectOfType<LaserBeamFade>().FireLaser();
+                // pause all movement and other actions
+                nextlaser = 0;
+            } else if (nextBulletFire > bulletFireRate) {
+                shoot();
+                nextBulletFire = 0;
+            }
 
-            moveTimer = 0;
+            // move based on player space, move every 5 seconds
+            if (moveTimer > moveInterval) {
+                //playerY = new Vector3(bossMove.transform.position.x, playerPos.position.y, 0);
+                playerY = new Vector3(bossMove.position.x, UnityEngine.Random.Range(-2f, 2f), 0);
+                moveTimer = 0;
+            }
+
         }
-
-        moveToPlayer();
-        nextEnemies += Time.deltaTime;
-        nextlaser += Time.deltaTime;
-        nextBulletFire += Time.deltaTime;
-        moveTimer += Time.deltaTime;
+            moveToPlayer();
+            nextEnemies += Time.deltaTime;
+            nextlaser += Time.deltaTime;
+            nextBulletFire += Time.deltaTime;
+            moveTimer += Time.deltaTime;
     }   
 
 
@@ -79,11 +83,16 @@ public class Boss : MonoBehaviour{
         } else {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnBottom);
         }
-        
     }
 
     void spawnDrones() {
-
+        for (int i = 0; i < 10; i++) {
+            if (i % 2 == 0) {
+                GameObject enemy = Instantiate(enemyPrefab, enemySpawnTop);
+            } else {
+                GameObject enemy = Instantiate(enemyPrefab, enemySpawnBottom);
+            }
+        }
     }
 
     void moveToPlayer() {
