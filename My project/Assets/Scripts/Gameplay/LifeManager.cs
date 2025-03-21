@@ -60,6 +60,6 @@ public class LifeManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log("Game Over! Player has lost all lives.");
-        // Implement game-over logic here (e.g., restart, show UI, etc.)
+        SceneManager.LoadScene("GameOver Screen");
     }
 }
