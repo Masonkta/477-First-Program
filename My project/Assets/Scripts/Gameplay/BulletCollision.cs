@@ -38,8 +38,20 @@ public class BulletCollision : MonoBehaviour
 
             GameObject impact = Instantiate(ImpactPrefab, transform.position, Quaternion.identity);
 
-            Destroy(gameObject); 
-            Destroy(impact, 1f); 
+            Destroy(gameObject);
+            Destroy(impact, 1f);
         }
+    }
+
+    // called in boss script
+    public void explosion() {
+        audioSource.PlayOneShot(explosionSound);
+
+        GameObject impact = Instantiate(ImpactPrefab, transform.position, Quaternion.identity);
+        GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        Destroy(explosion, 1f);
+        Destroy(impact, 1f);
+        Destroy(gameObject);
     }
 }

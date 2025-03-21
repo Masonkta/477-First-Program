@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3721496224554683473}
   - component: {fileID: 6536555250923670620}
   - component: {fileID: 476364237917975848}
-  - component: {fileID: -152363384677501743}
+  - component: {fileID: 6720605525716462578}
   m_Layer: 0
-  m_Name: Diver Enemy
-  m_TagString: Bullet
+  m_Name: Boss Drone
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,7 +411,7 @@ PolygonCollider2D:
       - {x: 0.2622223, y: 0.2181533}
       - {x: 0.26076537, y: 0.22121048}
   m_UseDelaunayMesh: 0
---- !u!114 &-152363384677501743
+--- !u!114 &6720605525716462578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -420,14 +420,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 871376243167968786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9daa1266796ff04faf5057f54a4f93e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bcd936d228a4a64fa78d9b4d1406061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
-  randSeekTimerMin: 10
-  randSeekTimerMax: 15
-  leftBoundary: {fileID: 873286799391814072, guid: 61812966525a44b499435c20c50f9fe4, type: 3}
-  rightBoundary: {fileID: 6643040351740829556, guid: 937271b18d6fb4d469776682262e9c66, type: 3}
-  TopBoundary: {fileID: 3661034362973231214, guid: 6af93e2fe500ff84093c2791620bc5d0, type: 3}
-  BottomBoundary: {fileID: 4705899043497230213, guid: d6b1c1d3f8928cb4aaed5ed199b62db1, type: 3}
-  attackSpeed: 1.5

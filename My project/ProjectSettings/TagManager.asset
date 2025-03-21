@@ -10,6 +10,7 @@ TagManager:
   - Shield
   - PowerUp
   - Border
+  - Laser
   layers:
   - Default
   - TransparentFX
