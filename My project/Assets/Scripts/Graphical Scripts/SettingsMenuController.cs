@@ -14,6 +14,9 @@ public class SettingsMenuController : MonoBehaviour
 
     void Start()
     {
+        soundLevel = PlayerPrefs.GetInt("VolumeLevel", 100); // default to 100
+        AudioListener.volume = soundLevel / 100f;
+
         UpdateArrowVisibility();
         UpdateSoundBars();
     }
@@ -66,7 +69,10 @@ public class SettingsMenuController : MonoBehaviour
     void ChangeSoundLevel(int change)
     {
         soundLevel = Mathf.Clamp(soundLevel + change, 0, 100); 
-        UpdateSoundBars(); 
+        UpdateSoundBars();
+        AudioListener.volume = soundLevel / 100f;
+        PlayerPrefs.SetInt("VolumeLevel", soundLevel);
+        PlayerPrefs.Save();
     }
 
     void UpdateSoundBars()
