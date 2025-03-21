@@ -32,6 +32,7 @@ public class FlyingObjects : MonoBehaviour
     public List<GameObject> powerUpPrefabs;
     public float powerUpSpeed; 
     public float nextEnemyFleetTime = 20f;
+    public float enemyFleetDelay = 20f;
     public Transform enemySpawnpoint;
     public GameObject enemyPrefab; 
     public float enemySpeed = 7f;
@@ -69,6 +70,7 @@ public class FlyingObjects : MonoBehaviour
 
             if (Time.time > nextEnemyFleetTime){
                 EnemyFleet();
+                nextEnemyFleetTime = Time.time + enemyFleetDelay;
             }
         }
     }
