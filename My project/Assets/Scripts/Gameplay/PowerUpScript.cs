@@ -17,6 +17,14 @@ public class PowerUpScript : MonoBehaviour
                 Debug.Log("Player now has a shield.");
                 Destroy(gameObject);
             }
+            if (powerUpType == "FireRateUp"){
+                ship.GetComponent<Movement>().hasFireRateUp = true;
+                Destroy(gameObject);
+            }
+            if (powerUpType == "FireRateDown"){
+                ship.GetComponent<Movement>().hasFireRateDown = true;
+                Destroy(gameObject);
+            }
         }
     }
 }

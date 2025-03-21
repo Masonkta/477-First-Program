@@ -27,6 +27,8 @@ public class LaserBeamFade : MonoBehaviour
         audioSource = Camera.main.GetComponent<AudioSource>();
         lineRenderer = gameObject.GetComponent<LineRenderer>();
 
+        GetComponent<PolygonCollider2D>().enabled = false;
+
         // Start the laser at zero width
         lineRenderer.startWidth = 0f;
         lineRenderer.endWidth = 0f;
@@ -91,6 +93,8 @@ public class LaserBeamFade : MonoBehaviour
 
     private IEnumerator ExpandBeam()
     {
+        GetComponent<PolygonCollider2D>().enabled = true;
+
         float elapsedTime = 0f;
 
         while (elapsedTime < expandDuration)
@@ -132,5 +136,8 @@ public class LaserBeamFade : MonoBehaviour
         lineRenderer.startWidth = 0f;
         lineRenderer.endWidth = 0f;
         isFiring = false;
+
+        GetComponent<PolygonCollider2D>().enabled = false;
+
     }
 }

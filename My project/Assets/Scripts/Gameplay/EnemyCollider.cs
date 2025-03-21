@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DebrisController : MonoBehaviour
+public class EnemyCollider : MonoBehaviour
 {
 
     public GameObject explosionPrefab;
@@ -23,7 +23,7 @@ public class DebrisController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Debris hit the player!");
+            Debug.Log("Enemy hit the player!");
 
             FindObjectOfType<LifeManager>().LoseLife();
 
@@ -37,11 +37,7 @@ public class DebrisController : MonoBehaviour
 
         if (other.CompareTag("Bullet")){
             Destroy(other.gameObject);
-        }
-
-        if (other.CompareTag("PowerUp")){
             Destroy(gameObject);
         }
-
     }
 }

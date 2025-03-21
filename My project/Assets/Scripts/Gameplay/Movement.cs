@@ -13,7 +13,8 @@ public class Movement : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform spawnPoint;
     public float bulletSpeed = 10f;
-    public float fireRate = 0.5f;
+    public float fireRate = 3f;
+    public float defaultFireRate = 3f;
     private float nextFireTime = 0f;
 
     public AudioClip soundEffect; 
@@ -24,7 +25,8 @@ public class Movement : MonoBehaviour
     public float shieldDelay = 5f; 
     private float shieldShutOffTime;
     public GameObject shield;
-
+    public bool hasFireRateUp = false;
+    public bool hasFireRateDown = false;
 
     void Start()
     {
@@ -83,6 +85,24 @@ public class Movement : MonoBehaviour
 
                     shieldObject.SetActive(false);
                 }
+            }
+
+            if (hasFireRateUp){
+                fireRate = 0f;
+                hasFireRateUp = false;
+            }
+
+            if (fireRate < defaultFireRate){
+                fireRate += 0.0001f;
+            }
+
+            if (hasFireRateDown){
+                fireRate = 4f;
+                hasFireRateDown = false;
+            }
+
+            if (fireRate > defaultFireRate){
+                fireRate -= 0.001f;
             }
             AdjustThrusterEffect(inputDirection);
 
