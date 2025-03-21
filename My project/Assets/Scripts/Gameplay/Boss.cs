@@ -37,26 +37,34 @@ public class Boss : MonoBehaviour{
         health = maxHealth;
         bossMove = transform;
         bossMove.Translate(new Vector3(8.5f, 0, 0));
-        bossMove.Translate(Vector3.left * 10*moveSpeed * Time.deltaTime);
         playerPos = transform;
     }
 
     // Update is called once per frame
     void Update(){
-        if (bossMove.position.x == 0) {
+        if (bossMove.position.x > 3.5) {
+             bossMove.Translate(Vector3.left * 3 * moveSpeed * Time.deltaTime);
+        } else {
             inScreen = true;
         }
 
-        while (inScreen) {
+        if (inScreen) {
             // Attack timings, prioities: spawning, laser, bullets
             if (nextEnemies > enemySpawnFreq) {
                 spawnDrones();
                 nextEnemies = 0;
-            } else if (nextlaser > laserFireRate) {
+                nextBulletFire -= 4.5f;
+                nextlaser -= 4.5f;
+                moveTimer -= 4.5f;
+            }
+            else if (nextlaser > laserFireRate) {
                 FindObjectOfType<LaserBeamFade>().FireLaser();
-                // pause all movement and other actions
+                nextEnemies -= 4.5f;
                 nextlaser = 0;
-            } else if (nextBulletFire > bulletFireRate) {
+                nextBulletFire = -4.5f;
+                moveTimer -= 4.5f;
+            }
+            else if (nextBulletFire > bulletFireRate) {
                 shoot();
                 nextBulletFire = 0;
             }
@@ -64,16 +72,23 @@ public class Boss : MonoBehaviour{
             // move based on player space, move every 5 seconds
             if (moveTimer > moveInterval) {
                 //playerY = new Vector3(bossMove.transform.position.x, playerPos.position.y, 0);
+                //if (playerPos.position.y > 2.5) {
+                //    playerY = new Vector3(bossMove.transform.position.x, 2.5f, 0);
+                //}
+                //else if (playerPos.position.y < -2) {
+                //    playerY = new Vector3(bossMove.transform.position.x, -2, 0);
+                //}
+
                 playerY = new Vector3(bossMove.position.x, UnityEngine.Random.Range(-2f, 2f), 0);
                 moveTimer = 0;
             }
 
-        }
             moveToPlayer();
             nextEnemies += Time.deltaTime;
             nextlaser += Time.deltaTime;
             nextBulletFire += Time.deltaTime;
             moveTimer += Time.deltaTime;
+        }
     }   
 
 
