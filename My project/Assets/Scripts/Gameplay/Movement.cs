@@ -5,6 +5,7 @@ public class Movement : MonoBehaviour
 {
     private Game gameInstance;
     private EnergyBar energyBarScript;
+    private ShieldBar shieldBarScript;
 
     public float maxSpeed = 5f;
     public float acceleration = 10f;
@@ -34,6 +35,7 @@ public class Movement : MonoBehaviour
         gameInstance = FindObjectOfType<Game>();
         audioSource = Camera.main.GetComponent<AudioSource>();
         energyBarScript = FindObjectOfType<EnergyBar>();
+        shieldBarScript = FindObjectOfType<ShieldBar>();
     }
 
     void Update()
@@ -84,7 +86,7 @@ public class Movement : MonoBehaviour
             {
                 shieldShutOffTime = Time.time + shieldDelay;
                 hasShield = false;
-
+                shieldBarScript.ActivateShield(shieldDelay);
                 shieldObject.SetActive(true);
             }
 
@@ -92,7 +94,6 @@ public class Movement : MonoBehaviour
             {
                 if (shieldShutOffTime < Time.time)
                 {
-
                     shieldObject.SetActive(false);
                 }
             }
