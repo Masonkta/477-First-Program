@@ -6,7 +6,8 @@ public class SettingsMenuController : MonoBehaviour
 {
     public GameObject resumeArrow;
     public GameObject soundArrow;
-    public GameObject[] soundBars; 
+    public GameObject[] soundBars;
+    public Movement playerMovement;
 
     private int selectedOption = 1;
     private int totalOptions = 2; 
@@ -16,6 +17,8 @@ public class SettingsMenuController : MonoBehaviour
     {
         soundLevel = PlayerPrefs.GetInt("VolumeLevel", 100); // default to 100
         AudioListener.volume = soundLevel / 100f;
+        if (playerMovement == null)
+            playerMovement = FindObjectOfType<Movement>();
 
         UpdateArrowVisibility();
         UpdateSoundBars();
@@ -101,6 +104,7 @@ public class SettingsMenuController : MonoBehaviour
     {
         Time.timeScale = 1; 
         SceneManager.UnloadSceneAsync("Settings Scene");
+        playerMovement.enabled = true;
         gameObject.SetActive(false);
     }
 

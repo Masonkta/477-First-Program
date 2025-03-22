@@ -4,6 +4,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private Game gameInstance;
+    private EnergyBar energyBarScript;
 
     public float maxSpeed = 5f;
     public float acceleration = 10f;
@@ -15,7 +16,7 @@ public class Movement : MonoBehaviour
     public float bulletSpeed = 10f;
     public float fireRate = 3f;
     public float defaultFireRate = 3f;
-    private float nextFireTime = 0f;
+    public float nextFireTime = 0f;
 
     public AudioClip soundEffect; 
     public AudioSource audioSource;
@@ -32,6 +33,7 @@ public class Movement : MonoBehaviour
     {
         gameInstance = FindObjectOfType<Game>();
         audioSource = Camera.main.GetComponent<AudioSource>();
+        energyBarScript = FindObjectOfType<EnergyBar>();
     }
 
     void Update()
@@ -54,6 +56,14 @@ public class Movement : MonoBehaviour
             {
                 Shoot();
                 audioSource.PlayOneShot(soundEffect);
+                if (input.Jump.ReadValue<float>() != 0 && Time.time >= nextFireTime)
+                {
+                    Shoot();
+                    audioSource.PlayOneShot(soundEffect);
+                    energyBarScript.FireLaser(fireRate);
+                    nextFireTime = Time.time + fireRate;
+                }
+
                 nextFireTime = Time.time + fireRate;
             }
 
