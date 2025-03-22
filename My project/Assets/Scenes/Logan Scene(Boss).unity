@@ -547,6 +547,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1785271658283178511, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
+      propertyPath: explosionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a0cea0dbe89bd54e8d3138b6d34c29d, type: 3}
+    - target: {fileID: 1785271658283178511, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 4164507944013383490, guid: 160a3d8b2865cd44dbceedea9fadbbfd, type: 3}
     - target: {fileID: 5576530048159307994, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7707587
