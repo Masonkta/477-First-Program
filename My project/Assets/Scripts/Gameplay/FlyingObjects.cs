@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class FlyingObjects : MonoBehaviour
@@ -17,33 +16,35 @@ public class FlyingObjects : MonoBehaviour
     public float starSpeed;
 
     public float debrisDelay;
-    public float nextDebrisTime = 5f; 
-    public Transform debrisSpawnpoint; 
-    public GameObject debris1Prefab; 
+    public float nextDebrisTime = 5f;
+    public Transform debrisSpawnpoint;
+    public GameObject debris1Prefab;
     public GameObject debris2Prefab;
-    public GameObject debris3Prefab; 
+    public GameObject debris3Prefab;
     public List<GameObject> debrisPrefabs;
-    public float debrisSpeed; 
+    public float debrisSpeed;
     public float nextPowerUpTime = 12f;
     public float PowerUpDelay = 12f;
     public Transform powerUpSpawnpoint;
-    public GameObject shieldPowerUpPrefab; 
+    public GameObject shieldPowerUpPrefab;
     public GameObject fireRateUpPowerUpPrefab;
     public GameObject fireRateDownPowerUpPrefab;
     public List<GameObject> powerUpPrefabs;
-    public float powerUpSpeed; 
+    public float powerUpSpeed;
     public float nextEnemyFleetTime = 20f;
     public float enemyFleetDelay = 20f;
     public Transform enemySpawnpoint;
-    public GameObject enemyPrefab; 
+    public GameObject enemyPrefab;
     public float enemySpeed = 7f;
+
+    private List<GameObject> spawnedObjects = new List<GameObject>(); // List to track spawned objects
 
     void Start()
     {
         gameInstance = FindObjectOfType<Game>();
         audioSource = Camera.main.GetComponent<AudioSource>();
-        debrisPrefabs = new List<GameObject> {debris1Prefab, debris2Prefab, debris3Prefab};
-        powerUpPrefabs = new List<GameObject> {shieldPowerUpPrefab, fireRateUpPowerUpPrefab, fireRateDownPowerUpPrefab};
+        debrisPrefabs = new List<GameObject> { debris1Prefab, debris2Prefab, debris3Prefab };
+        powerUpPrefabs = new List<GameObject> { shieldPowerUpPrefab, fireRateUpPowerUpPrefab, fireRateDownPowerUpPrefab };
         powerUpSpeed = debrisSpeed;
     }
 
@@ -69,89 +70,88 @@ public class FlyingObjects : MonoBehaviour
                 nextPowerUpTime = Time.time + PowerUpDelay;
             }
 
-            if (Time.time > nextEnemyFleetTime){
+            if (Time.time > nextEnemyFleetTime)
+            {
                 StartCoroutine(EnemyFleet());
                 nextEnemyFleetTime = Time.time + enemyFleetDelay;
             }
         }
     }
 
-    void ShootingStar(){
+    void ShootingStar()
+    {
         ShootingStarSpawnpoint.position = new Vector2(Random.Range(-1f, 10f), ShootingStarSpawnpoint.transform.position.y);
         GameObject star = Instantiate(starPrefab, ShootingStarSpawnpoint.position, Quaternion.identity);
+        spawnedObjects.Add(star); // Track object
 
         Rigidbody2D rb = star.GetComponent<Rigidbody2D>();
-
         if (rb != null)
-            {
+        {
+            rb.velocity = ShootingStarSpawnpoint.up * starSpeed;
+        }
 
-                rb.velocity = ShootingStarSpawnpoint.up * starSpeed;  
-            }
-
-            Destroy(star, 6f);
+        Destroy(star, 6f);
     }
 
-    void FloatingDebris(){
-        // Set a random Y position while keeping the X fixed.
+    void FloatingDebris()
+    {
         debrisSpawnpoint.position = new Vector3(debrisSpawnpoint.transform.position.x, Random.Range(-3f, 6f), -0.2f);
-
         GameObject debrisPrefab = debrisPrefabs[Random.Range(0, debrisPrefabs.Count)];
-
-        // Instantiate the debris.
         GameObject debris = Instantiate(debrisPrefab, debrisSpawnpoint.position, Quaternion.identity);
+        spawnedObjects.Add(debris); // Track object
 
-        // Get Rigidbody2D component.
         Rigidbody2D rb = debris.GetComponent<Rigidbody2D>();
-
-        // Set velocity to move from right to left.
         rb.velocity = Vector2.left * debrisSpeed;
 
-        // Destroy the debris after 15 seconds.
         Destroy(debris, 25f);
     }
 
-    void FloatingPowerUps(){
-        // Set a random Y position while keeping the X fixed.
+    void FloatingPowerUps()
+    {
         powerUpSpawnpoint.position = new Vector3(powerUpSpawnpoint.transform.position.x, Random.Range(-3f, 6f), -0.2f);
-
         GameObject powerUpPrefab = powerUpPrefabs[Random.Range(0, powerUpPrefabs.Count)];
-
-        // Instantiate the debris.
         GameObject powerUp = Instantiate(powerUpPrefab, powerUpSpawnpoint.position, Quaternion.identity);
+        spawnedObjects.Add(powerUp); // Track object
 
         powerUp.GetComponent<PowerUpScript>().ship = GameObject.Find("Ship");
 
-        // Get Rigidbody2D component.
         Rigidbody2D rb = powerUp.GetComponent<Rigidbody2D>();
-
-        // Set velocity to move from right to left.
         rb.velocity = Vector2.left * powerUpSpeed;
 
-        // Destroy the debris after 15 seconds.
         Destroy(powerUp, 25f);
     }
 
-    IEnumerator EnemyFleet(){
-        // Instantiate the enemies.
-        List<GameObject> enemies = new List<GameObject>(new GameObject[5]);
-        for (int i = 0; i < 5; i++){
-            // Set a random Y position while keeping the X fixed.
+    IEnumerator EnemyFleet()
+    {
+        List<GameObject> enemies = new List<GameObject>();
+
+        for (int i = 0; i < 5; i++)
+        {
             enemySpawnpoint.position = new Vector3(enemySpawnpoint.transform.position.x, Random.Range(-3f, 6f), -0.2f);
+            GameObject enemy = Instantiate(enemyPrefab, enemySpawnpoint.position, Quaternion.identity);
+            spawnedObjects.Add(enemy); // Track object
+            enemies.Add(enemy);
 
-            //spawn enemy
-            enemies[i] = Instantiate(enemyPrefab, enemySpawnpoint.position, Quaternion.identity);
-
-            // Get Rigidbody2D component.
-            Rigidbody2D rb = enemies[i].GetComponent<Rigidbody2D>();
-
-            // Set velocity to move from right to left.
+            Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
             rb.velocity = Vector2.left * enemySpeed;
 
-            // Destroy the enemy after 15 seconds.
-            Destroy(enemies[i], 10f);
+            Destroy(enemy, 10f);
 
             yield return new WaitForSeconds(0.5f);
         }
     }
 
+    // Function to destroy all instantiated objects
+    public void DestroyAllSpawnedObjects()
+    {
+        foreach (GameObject obj in spawnedObjects)
+        {
+            if (obj != null)
+            {
+                Destroy(obj);
+            }
+        }
+        spawnedObjects.Clear(); // Clear the list after destroying objects
+        Debug.Log("All instantiated objects have been destroyed.");
+    }
 }
