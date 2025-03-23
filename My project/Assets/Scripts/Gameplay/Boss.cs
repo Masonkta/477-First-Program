@@ -15,10 +15,10 @@ public class Boss : MonoBehaviour{
     public Transform bulletSpawnTop;
     public Transform bulletSpawnBottom;
     public float bulletFireRate = .5f;
-    public GameObject enemyPrefab;
-    public Transform enemySpawnTop;
-    public Transform enemySpawnBottom;
-    public float enemySpawnFreq = 10f;
+    public GameObject misslePrefab;
+    public Transform missleSpawnTop;
+    public Transform missleSpawnBottom;
+    public float missleSpawnFreq = 10f;
     public float moveInterval;
     public Slider healthBar;
     #endregion
@@ -27,7 +27,7 @@ public class Boss : MonoBehaviour{
     private float maxHealth = 100f;
     private float nextBulletFire;
     private float nextlaser;
-    private float nextEnemies;
+    private float nextmissle;
     private float moveTimer = 100;
     private Vector3 playerY;
     private Transform bossMove;
@@ -39,6 +39,7 @@ public class Boss : MonoBehaviour{
         health = maxHealth;
         bossMove = transform;
         bossMove.Translate(new Vector3(8.5f, 0, 0));
+        misslePrefab.GetComponent<Missle>().playerPos = playerPos;
     }
 
     // Update is called once per frame
@@ -48,23 +49,23 @@ public class Boss : MonoBehaviour{
 
         if (bossMove.position.x > 3.5) {
             bossMove.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            health = maxHealth;
         } else {
             inScreen = true;
         }
 
         if (inScreen) {
             // Attack timings, prioities: spawning, laser, bullets
-            if (nextEnemies > enemySpawnFreq) {
-                print("spawning");
-                spawnDrones();
-                nextEnemies = 0;
+            if (nextmissle > missleSpawnFreq) {
+                spawnMissles();
+                nextmissle = 0;
                 nextBulletFire -= 5f;
                 nextlaser -= 5f;
                 moveTimer -= 5f;
             }
             else if (nextlaser > laserFireRate) {
                 FindObjectOfType<LaserBeamFade>().FireLaser();
-                nextEnemies -= 4.5f;
+                nextmissle -= 4.5f;
                 nextlaser = 0;
                 nextBulletFire = -4.5f;
                 moveTimer -= 4.5f;
@@ -86,7 +87,7 @@ public class Boss : MonoBehaviour{
             }
 
             moveToPlayer();
-            nextEnemies += Time.deltaTime;
+            nextmissle += Time.deltaTime;
             nextlaser += Time.deltaTime;
             nextBulletFire += Time.deltaTime;
             moveTimer += Time.deltaTime;
@@ -102,8 +103,15 @@ public class Boss : MonoBehaviour{
         }
     }
 
-    void spawnDrones() {
-        
+    void spawnMissles() {
+        for (int i = 0; i < 4; i++) {
+            if (i % 2 == 0) {
+                GameObject missle = Instantiate(misslePrefab, missleSpawnTop);
+            } else {
+                GameObject missle = Instantiate(misslePrefab, missleSpawnTop);
+            }
+            
+        }
     }
 
     void moveToPlayer() {
@@ -114,7 +122,7 @@ public class Boss : MonoBehaviour{
         health -= amount;
         if (health < 0) {
             health = 0;
-            nextEnemies -= 40000f;
+            nextmissle -= 40000f;
             nextlaser -= 400000;
             nextBulletFire = -450000f;
             moveTimer -= 450000f;
