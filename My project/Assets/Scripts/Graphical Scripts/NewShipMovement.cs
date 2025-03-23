@@ -1,85 +1,85 @@
 using UnityEngine;
-using System.Collections;
 
 public class ShipMovement : MonoBehaviour
 {
-    public Vector2 xRange = new Vector2(-5.5f, 5.5f); 
-    public Vector2 yRange = new Vector2(0.8f, -1.7f); 
-    public float enterSpeed = 1.5f; 
-    public float minPatrolSpeed = 0.2f; 
-    public float maxPatrolSpeed = 0.5f; 
-    public float swayIntensity = 0.5f; 
-    public float rotationSpeed = 1.5f; 
-    public float transitionDelay = 1.0f; 
-    public float maxRotation = 45f; 
+    public Vector2 xRange = new Vector2(-5.9f, 5.9f);
+    public Vector2 yRange = new Vector2(-3.5f, 3.5f);
+    public float moveSpeed = 5f;
+    public float rotationSpeed = 5f;
+    public float maxRotation = 45f;
+    public float returnDelay = 1f;  
 
-    private Vector3 targetPos; 
-    private bool movingLeft = true; 
-    private float currentSpeed; 
+    private Vector3 defaultPosition = new Vector3(0, -1.7f, 0); 
+    private Camera mainCam;
+    private float timeOutsideRange = 0f; 
 
     void Start()
     {
-        transform.position = new Vector3(0, -5f, 0); 
-        StartCoroutine(EnterScreen());
+        mainCam = Camera.main;
+        transform.position = defaultPosition;
     }
 
-    IEnumerator EnterScreen()
+    void Update()
     {
- 
-        Vector3 startPos = transform.position;
-        Vector3 endPos = new Vector3(0, -1.7f, 0); 
-
-        float elapsedTime = 0;
-        float duration = Mathf.Abs(startPos.y - endPos.y) / enterSpeed;
-
-        while (elapsedTime < duration)
+        if (mainCam == null) return;
+        Vector3 mouseWorldPos = GetMouseWorldPosition();
+        if (Input.mousePresent) 
         {
-            transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = endPos;
-
-
-        targetPos = GetNextPatrolTarget();
-        StartCoroutine(Patrol());
-    }
-
-    IEnumerator Patrol()
-    {
-        while (true)
-        {
-            currentSpeed = Random.Range(minPatrolSpeed, maxPatrolSpeed);
-
-            while (Vector3.Distance(transform.position, targetPos) > 0.05f)
+            if (IsMouseWithinRange(mouseWorldPos))
             {
-                float sway = Mathf.Sin(Time.time * 2) * swayIntensity;
-                Vector3 swayPosition = new Vector3(targetPos.x + sway, targetPos.y, targetPos.z);
-                transform.position = Vector3.MoveTowards(transform.position, swayPosition, currentSpeed * Time.deltaTime);
-                Vector3 direction = (targetPos - transform.position).normalized;
-                float targetRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                targetRotation = Mathf.Clamp(targetRotation, -maxRotation, maxRotation);
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, targetRotation), rotationSpeed * Time.deltaTime);
-
-                yield return null;
+                timeOutsideRange = 0f; 
+                MoveToMouse(mouseWorldPos); 
             }
-            yield return new WaitForSeconds(transitionDelay);
-            targetPos = GetNextPatrolTarget();
-        }
-    }
-
-    Vector3 GetNextPatrolTarget()
-    {
-        if (movingLeft)
-        {
-            movingLeft = false;
-            return new Vector3(xRange.x, Random.Range(yRange.y, yRange.x), transform.position.z); // Move left
+            else
+            {
+                timeOutsideRange += Time.deltaTime;
+                if (timeOutsideRange >= returnDelay)
+                {
+                    MoveToDefaultPosition(); 
+                }
+            }
         }
         else
         {
-            movingLeft = true;
-            return new Vector3(xRange.y, Random.Range(yRange.y, yRange.x), transform.position.z); // Move right
+            timeOutsideRange = 0f; 
+            MoveToDefaultPosition(); 
         }
+    }
+
+    Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = -mainCam.transform.position.z; 
+        Vector3 worldPos = mainCam.ScreenToWorldPoint(mousePos);
+        return new Vector3(worldPos.x, worldPos.y, 0);
+    }
+
+    void MoveToMouse(Vector3 targetPos)
+    {
+        targetPos.x = Mathf.Clamp(targetPos.x, xRange.x, xRange.y);
+        targetPos.y = Mathf.Clamp(targetPos.y, yRange.x, yRange.y);
+        transform.position = Vector2.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
+        RotateTowards(targetPos);
+    }
+
+    void MoveToDefaultPosition()
+    {
+        transform.position = Vector2.Lerp(transform.position, defaultPosition, 1 * Time.deltaTime);
+        RotateTowards(defaultPosition);
+    }
+
+    void RotateTowards(Vector3 targetPos)
+    {
+        Vector3 direction = (targetPos - transform.position).normalized;
+        float targetRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        targetRotation = Mathf.Clamp(targetRotation, -maxRotation, maxRotation);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, targetRotation), rotationSpeed * Time.deltaTime);
+    }
+
+    bool IsMouseWithinRange(Vector3 mouseWorldPos)
+    {
+        bool isWithinX = mouseWorldPos.x >= xRange.x && mouseWorldPos.x <= xRange.y;
+        bool isWithinY = mouseWorldPos.y >= yRange.x && mouseWorldPos.y <= yRange.y;
+        return isWithinX && isWithinY;
     }
 }

@@ -140,8 +140,15 @@ public class LevelManager : MonoBehaviour
         {
             fadeCanvasGroup.alpha = 1f;
         }
-
-        SceneManager.LoadScene("Level 2");
+        if (SceneManager.GetActiveScene().name == "Main Scene")
+        {
+            SceneManager.LoadScene("Level 2");
+        }
+         
+        if (SceneManager.GetActiveScene().name == "Level 2")
+        {
+            SceneManager.LoadScene("Level 3");
+        }
     }
 
 

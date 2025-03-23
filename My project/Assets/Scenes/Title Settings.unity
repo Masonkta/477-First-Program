@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092604131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c1e6f75bc944084c8b61020ce77a672, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c891b965b07d5a45a95a3fcf2e7f563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resumeArrow: {fileID: 749868737}
@@ -1830,7 +1830,6 @@ MonoBehaviour:
   - {fileID: 1665775445}
   - {fileID: 2022995133}
   - {fileID: 1213884956}
-  playerMovement: {fileID: 0}
 --- !u!1 &1213884956
 GameObject:
   m_ObjectHideFlags: 0

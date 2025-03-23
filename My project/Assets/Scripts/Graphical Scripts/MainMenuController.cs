@@ -6,12 +6,16 @@ public class MainMenuController : MonoBehaviour
 {
     public GameObject onePlayerArrow;
     public GameObject twoPlayerArrow;
+    public GameObject settingsArrow;
 
     private int selectedOption = 1;
+    private int totalOptions = 3; 
 
     void Start()
     {
         Time.timeScale = 1f;
+        int savedVolume = PlayerPrefs.GetInt("VolumeLevel", 100);
+        AudioListener.volume = savedVolume / 100f;
         UpdateArrowVisibility();
     }
 
@@ -19,18 +23,18 @@ public class MainMenuController : MonoBehaviour
     {
         if (Keyboard.current.upArrowKey.wasPressedThisFrame || Keyboard.current.wKey.wasPressedThisFrame)
         {
-            selectedOption = 1;
+            selectedOption = (selectedOption > 1) ? selectedOption - 1 : totalOptions;
             UpdateArrowVisibility();
         }
         else if (Keyboard.current.downArrowKey.wasPressedThisFrame || Keyboard.current.sKey.wasPressedThisFrame)
         {
-            selectedOption = 2;
+            selectedOption = (selectedOption < totalOptions) ? selectedOption + 1 : 1;
             UpdateArrowVisibility();
         }
 
         if (Keyboard.current.enterKey.wasPressedThisFrame)
         {
-            LoadMainScene();
+            ExecuteSelection();
         }
     }
 
@@ -41,13 +45,28 @@ public class MainMenuController : MonoBehaviour
 
         if (twoPlayerArrow != null)
             twoPlayerArrow.SetActive(selectedOption == 2);
+
+        if (settingsArrow != null)
+            settingsArrow.SetActive(selectedOption == 3);
     }
 
-    void LoadMainScene()
+    void ExecuteSelection()
     {
-        PlayerPrefs.SetInt("PlayerMode", selectedOption);
+        switch (selectedOption)
+        {
+            case 1: // One Player Mode
+                PlayerPrefs.SetInt("PlayerMode", 1);
+                SceneManager.LoadScene("Main Scene");
+                break;
 
-        SceneManager.LoadScene("Main Scene");
+            case 2: // Two Player Mode
+                PlayerPrefs.SetInt("PlayerMode", 2);
+                SceneManager.LoadScene("Main Scene");
+                break;
+
+            case 3: // Open Settings
+                SceneManager.LoadScene("Title Settings");
+                break;
+        }
     }
-
 }
