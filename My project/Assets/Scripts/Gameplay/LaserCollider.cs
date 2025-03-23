@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour {
-    public float moveSpeed;
+public class LaserCollider : MonoBehaviour {
+
     public AudioSource audioSource;
     public GameObject explosionPrefab;
     public AudioClip explosionSound;
@@ -15,16 +15,13 @@ public class EnemyBullet : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Border")) {
-            Destroy(this.gameObject);
-        }
-        else if (other.CompareTag("Player"))
-        {
-            Debug.Log("enemy bullet hit player!");
+    // think where to put it
+    void OnTriggerStay(Collider other) {
+        if (other.CompareTag("Player")) {
+            Debug.Log("laser hit player!");
 
             FindObjectOfType<LifeManager>().LoseLife();
 

@@ -14,7 +14,7 @@ public class Boss : MonoBehaviour{
     public GameObject bulletPrefab;
     public Transform bulletSpawnTop;
     public Transform bulletSpawnBottom;
-    public float bulletFireRate = 1f;
+    public float bulletFireRate = .5f;
     public GameObject enemyPrefab;
     public Transform enemySpawnTop;
     public Transform enemySpawnBottom;
@@ -39,15 +39,15 @@ public class Boss : MonoBehaviour{
         health = maxHealth;
         bossMove = transform;
         bossMove.Translate(new Vector3(8.5f, 0, 0));
-        //playerPos = transform;
     }
 
     // Update is called once per frame
     void Update(){
         //healthBar.value = health/maxHealth;
+        print(playerPos.position);
 
         if (bossMove.position.x > 3.5) {
-            bossMove.Translate(Vector3.left * 3 * moveSpeed * Time.deltaTime);
+            bossMove.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         } else {
             inScreen = true;
         }
@@ -82,8 +82,6 @@ public class Boss : MonoBehaviour{
                 } else if (playerPos.position.y < -2) {
                     playerY = new Vector3(bossMove.transform.position.x, -2, 0);
                 }
-
-                playerY = new Vector3(bossMove.position.x, UnityEngine.Random.Range(-2f, 2f), 0);
                 moveTimer = 0;
             }
 
@@ -112,21 +110,15 @@ public class Boss : MonoBehaviour{
         bossMove.position = Vector3.MoveTowards(bossMove.position, playerY, moveSpeed * Time.deltaTime);
     }
 
-    void decHealth(float amount) {
+    public void decHealth(float amount) {
         health -= amount;
         if (health < 0) {
             health = 0;
+            nextEnemies -= 40000f;
+            nextlaser -= 400000;
+            nextBulletFire = -450000f;
+            moveTimer -= 450000f;
             // death animation
         }
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision) {
-    //    if (collision.CompareTag("Bullet")) {
-    //        // add bullet damage
-    //        decHealth(1);
-    //        var bulletScript = collision.gameObject.GetComponent<BulletCollision>();
-    //        bulletScript.explosion();
-    //        // need explosion stuff
-    //    }
-    //}
 }

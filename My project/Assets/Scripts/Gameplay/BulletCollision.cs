@@ -8,6 +8,7 @@ public class BulletCollision : MonoBehaviour
     public AudioClip bulletHitSound;
     public AudioClip explosionSound;
     public AudioSource audioSource;
+    public Boss boss;
 
     void Start()
     {
@@ -32,6 +33,16 @@ public class BulletCollision : MonoBehaviour
             Destroy(explosion, 1f);
             Destroy(impact, 1f);
         }
+        else if (other.CompareTag("Boss"))
+        {
+            audioSource.PlayOneShot(explosionSound);
+
+            GameObject impact = Instantiate(ImpactPrefab, transform.position, Quaternion.identity);
+
+            boss.decHealth(1);
+            Destroy(gameObject);
+            Destroy(impact, 1f);
+        }
         else
         {
             audioSource.PlayOneShot(bulletHitSound);
@@ -41,17 +52,5 @@ public class BulletCollision : MonoBehaviour
             Destroy(gameObject);
             Destroy(impact, 1f);
         }
-    }
-
-    // called in boss script
-    public void explosion() {
-        audioSource.PlayOneShot(explosionSound);
-
-        GameObject impact = Instantiate(ImpactPrefab, transform.position, Quaternion.identity);
-        GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-
-        Destroy(explosion, 1f);
-        Destroy(impact, 1f);
-        Destroy(gameObject);
     }
 }

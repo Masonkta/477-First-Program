@@ -18,6 +18,7 @@ public class LifeManager : MonoBehaviour
 
     public void LoseLife()
     {
+        Debug.Log("loose life");
         if (lives > 0)
         {
             lives--;

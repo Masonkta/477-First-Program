@@ -21,9 +21,6 @@ public class LaserBeamFade : MonoBehaviour
 
     private bool isFiring = false; // Check for currently Firing
 
-    public GameObject explosionPrefab;
-    public AudioClip explosionSound;
-
 
     private void Awake()
     {
@@ -142,21 +139,5 @@ public class LaserBeamFade : MonoBehaviour
 
         GetComponent<PolygonCollider2D>().enabled = false;
 
-    }
-
-    // think where to put it
-    private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Player")) {
-            Debug.Log("Star hit the player!");
-
-            FindObjectOfType<LifeManager>().LoseLife();
-
-            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-
-            audioSource.PlayOneShot(explosionSound);
-
-            Destroy(gameObject);
-            Destroy(explosion, 1f);
-        }
     }
 }
