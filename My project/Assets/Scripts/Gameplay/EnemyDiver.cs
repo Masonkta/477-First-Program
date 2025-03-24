@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class EnemyDiver : MonoBehaviour
 {
-    public float maxSpeed = .5f;
+    public float maxSpeed = .7f;
     public float randSeekTimerMin = 8f;
     public float randSeekTimerMax = 12f;
+
     public GameObject leftBoundary;
     public GameObject rightBoundary;
     public GameObject TopBoundary;
     public GameObject BottomBoundary; 
-    public float attackSpeed = 1.5f;
+
+    
+    public float attackTime = 4f;
+    public float attackTimeMin = 1f;
+    public float attackTimeMax = 2f;
+
     public float upperSpawn = 4;
     public float lowerSpawn = -4;
+
     public AudioSource audioSource;
     public AudioClip explosionSound;
 
@@ -23,7 +30,6 @@ public class EnemyDiver : MonoBehaviour
     private GameObject playerLoc;
 
     private float timer = 0;
-    private float attackTime;
     private float randSeekTime;
     private float diveBombTime = 0;
     private Rigidbody2D rb;
@@ -42,7 +48,7 @@ public class EnemyDiver : MonoBehaviour
         rb.velocity = Vector2.left * maxSpeed;
         transform.position = new Vector3(rb.position.x, Random.Range(lowerSpawn, upperSpawn), .3f);
 
-        attackTime = 7;
+        
         randSeekTime = Random.Range(randSeekTimerMin, randSeekTimerMax);
         playerLoc = GameObject.Find("Ship");
         audioSource = Camera.main.GetComponent<AudioSource>();
@@ -55,7 +61,7 @@ public class EnemyDiver : MonoBehaviour
         diveBombTime += Time.deltaTime;
         if (timer >= attackTime)
         {
-            attackTime = Random.Range(attackSpeed - .7f, attackSpeed + .7f);
+            attackTime = Random.Range(attackTimeMin, attackTimeMax);
             Instantiate(bullet, bulletSpawn);
             timer = 0;
         }
