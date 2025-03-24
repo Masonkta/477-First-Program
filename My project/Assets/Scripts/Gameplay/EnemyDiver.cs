@@ -14,6 +14,8 @@ public class EnemyDiver : MonoBehaviour
     public float attackSpeed = 1.5f;
     public float upperSpawn = 4;
     public float lowerSpawn = -4;
+    public AudioSource audioSource;
+    public AudioClip explosionSound;
 
     public GameObject bullet;
     public GameObject explosion;
@@ -27,7 +29,6 @@ public class EnemyDiver : MonoBehaviour
     private Rigidbody2D rb;
     private bool hasDived = false;
     private Vector2 direction;
-    private bool isDestroyed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,7 @@ public class EnemyDiver : MonoBehaviour
         attackTime = 7;
         randSeekTime = Random.Range(randSeekTimerMin, randSeekTimerMax);
         playerLoc = GameObject.Find("Ship");
+        audioSource = Camera.main.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -72,27 +74,29 @@ public class EnemyDiver : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-        if (isDestroyed)
-        {
-            Destroy(this.gameObject);
-        }
+        
     }
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Shield"))
         {
-            Destroy(other.gameObject);
-            Instantiate(explosion, bulletSpawn);
-            isDestroyed = true;
+            GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
+
+            audioSource.PlayOneShot(explosionSound);
+            Destroy(explosionEffect, 1f);
+            Destroy(this.gameObject);
         }
-        if (other.CompareTag("Bullet"))
+        else if (other.CompareTag("Player"))
         {
-            Instantiate(explosion, bulletSpawn);
-            Destroy(other.gameObject);
-            isDestroyed = true;
-            
+            GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
+
+            audioSource.PlayOneShot(explosionSound);
+            Destroy(explosionEffect, 1f);
+            Destroy(this.gameObject);
+            FindObjectOfType<LifeManager>().LoseLife();
         }
     }
+    
 }

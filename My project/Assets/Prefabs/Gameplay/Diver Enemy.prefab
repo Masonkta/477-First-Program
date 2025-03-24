@@ -434,6 +434,8 @@ MonoBehaviour:
   attackSpeed: 1.5
   upperSpawn: 4
   lowerSpawn: -4
+  audioSource: {fileID: 0}
+  explosionSound: {fileID: 8300000, guid: 5a0cea0dbe89bd54e8d3138b6d34c29d, type: 3}
   bullet: {fileID: 9058156355826230304, guid: 1745c5277b1d2764d835cde85ba99cbf, type: 3}
   explosion: {fileID: 4164507944013383490, guid: 160a3d8b2865cd44dbceedea9fadbbfd, type: 3}
   bulletSpawn: {fileID: 7460474984591389892}
@@ -462,7 +464,7 @@ Transform:
   m_GameObject: {fileID: 5772792673927288498}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.754, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
