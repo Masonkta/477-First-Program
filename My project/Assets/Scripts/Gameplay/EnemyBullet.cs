@@ -18,8 +18,18 @@ public class EnemyBullet : MonoBehaviour {
         transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Border")) {
+            Destroy(this.gameObject);
+        }
+        else if (other.CompareTag("Shield"))
+        {
+            Destroy(this.gameObject);
+            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+            audioSource.PlayOneShot(explosionSound);
+
+            Destroy(explosion, 1f);
             Destroy(this.gameObject);
         }
         else if (other.CompareTag("Player"))
@@ -33,6 +43,7 @@ public class EnemyBullet : MonoBehaviour {
             audioSource.PlayOneShot(explosionSound);
 
             Destroy(explosion, 1f);
+            Destroy(this.gameObject);
         }
     }
 }
