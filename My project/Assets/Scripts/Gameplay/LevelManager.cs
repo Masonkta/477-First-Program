@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (Time.time - startTime >= 5f)
+        if (Time.time - startTime >= 120f)
         {
             if (!Ended)
             {

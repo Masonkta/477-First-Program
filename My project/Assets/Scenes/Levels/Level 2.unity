@@ -13848,11 +13848,11 @@ MonoBehaviour:
   explosionPrefab: {fileID: 4164507944013383490, guid: 160a3d8b2865cd44dbceedea9fadbbfd, type: 3}
   explosionSound: {fileID: 8300000, guid: 5a0cea0dbe89bd54e8d3138b6d34c29d, type: 3}
   audioSource: {fileID: 0}
-  starDelay: 4
-  nextStarTime: 4
+  starDelay: 3
+  nextStarTime: 3
   ShootingStarSpawnpoint: {fileID: 538617149}
   starPrefab: {fileID: 3248927628260183719, guid: 235a84a8915ae1b4f849d1cbd74ca7cc, type: 3}
-  starSpeed: 5
+  starSpeed: 7
   debrisDelay: 5
   nextDebrisTime: 5
   debrisSpawnpoint: {fileID: 1072378394}
@@ -13860,20 +13860,20 @@ MonoBehaviour:
   debris2Prefab: {fileID: 7686346013296414809, guid: 491235732f06bed4e873b48ed9c4b9d1, type: 3}
   debris3Prefab: {fileID: 5856194942573014981, guid: 176c9de6607918d4ca72a0f41d69051a, type: 3}
   debrisPrefabs: []
-  debrisSpeed: 1
-  nextPowerUpTime: 10
-  PowerUpDelay: 10
+  debrisSpeed: 1.5
+  nextPowerUpTime: 13
+  PowerUpDelay: 13
   powerUpSpawnpoint: {fileID: 1456529805}
   shieldPowerUpPrefab: {fileID: 2900278020961622081, guid: 76ef55e64d3d31445a2258fcba1fdd07, type: 3}
   fireRateUpPowerUpPrefab: {fileID: 2900278020961622081, guid: ef3fc8ae5dd3d444c8e18c8b87e55c44, type: 3}
   fireRateDownPowerUpPrefab: {fileID: 2900278020961622081, guid: f902574a326e1994a92c01733f71faed, type: 3}
   powerUpPrefabs: []
   powerUpSpeed: 0
-  nextEnemyFleetTime: 20
-  enemyFleetDelay: 20
+  nextEnemyFleetTime: 15
+  enemyFleetDelay: 15
   enemySpawnpoint: {fileID: 1072378394}
   enemyPrefab: {fileID: 2246084954188515008, guid: 2e0ad9a37f185494a893acf921f7bde4, type: 3}
-  enemySpeed: 7
+  enemySpeed: 9
 --- !u!4 &1734988325
 Transform:
   m_ObjectHideFlags: 0
