@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -18,6 +19,7 @@ public class EnemySpawn : MonoBehaviour
     private float timer = 0f;
     private float randomFloat = 2;
     private float numSpawned = 1;
+    private List<GameObject> spawnedObjects = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -36,9 +38,20 @@ public class EnemySpawn : MonoBehaviour
             randomFloat = Random.Range(spawnTimeMin, spawnTimeMax);
             for (int i = 0; i < numSpawned; i++)
             {
-                Instantiate(enemy, spawnTarget);
+               GameObject diver = Instantiate(enemy, spawnTarget);
+                spawnedObjects.Add(diver);
             }
-            
         }
+    }
+    public void DestroyAllSpawnedObjects()
+    {
+        foreach (GameObject obj in spawnedObjects)
+        {
+            if (obj != null)
+            {
+                Destroy(obj);
+            }
+        }
+        spawnedObjects.Clear(); // Clear the list after destroying objects
     }
 }

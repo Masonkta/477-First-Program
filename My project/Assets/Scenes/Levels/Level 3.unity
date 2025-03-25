@@ -12808,8 +12808,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1114372602}
-  - component: {fileID: 1114372601}
-  - component: {fileID: 1114372603}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -12817,31 +12815,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1114372601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114372600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 539cd6de08dc83347a30b14ff8db4984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wormholePrefab: {fileID: 4188815541616108030, guid: 7c527f6148316884da5d39962f23aa46, type: 3}
-  wormholeSpawnPoint: {fileID: 1627693314}
-  gameInstance: {fileID: 1772434712}
-  movementScript: {fileID: 152782630}
-  spawnScripts:
-  - {fileID: 1734988324}
-  LevelSound: {fileID: 8300000, guid: d2c12a4f81dc2424f8b7dca5f90452d9, type: 3}
-  PortalSound: {fileID: 8300000, guid: 12d41ece912b2ab46bcb3d86db57e82a, type: 3}
-  bgmSource: {fileID: 1016234233}
-  objects: {fileID: 1734988324}
-  texteffect: {fileID: 1114372603}
-  fadeCanvas: {fileID: 144679212}
-  fadeDuration: 1
 --- !u!4 &1114372602
 Transform:
   m_ObjectHideFlags: 0
@@ -12858,20 +12831,6 @@ Transform:
   - {fileID: 1627693314}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1114372603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114372600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c5b098f8a4fd0439ec2f436c53b476, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainText: {fileID: 624335206}
-  accentText: {fileID: 1772076101}
 --- !u!4 &1117142244 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9115512358402781837, guid: 6af93e2fe500ff84093c2791620bc5d0, type: 3}

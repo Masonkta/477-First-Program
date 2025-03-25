@@ -820,6 +820,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &155062776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 155062778}
+  - component: {fileID: 155062777}
+  m_Layer: 0
+  m_Name: DiverSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &155062777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155062776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2ea9a2f73fd6044a9eb16531f00604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTimeMin: 3
+  spawnTimeMax: 5
+  numSpawnedMax: 4
+  numSpawnedMin: 1
+  enemy: {fileID: 871376243167968786, guid: d5ec46170915b1346823953968ee6022, type: 3}
+  spawnPoint: {fileID: 155062778}
+--- !u!4 &155062778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155062776}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2002073303}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &158207706
 GameObject:
   m_ObjectHideFlags: 0
@@ -6029,37 +6079,6 @@ MonoBehaviour:
   - {fileID: 1835794075}
   respawnPoint: {fileID: 1031584384}
   playerPrefab: {fileID: 5019997920302566796, guid: ef2b9fe4f764d1142af75f4b343dfc84, type: 3}
---- !u!1 &395266708
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 395266709}
-  m_Layer: 0
-  m_Name: Enemys
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &395266709
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395266708}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &432772299
 GameObject:
   m_ObjectHideFlags: 0
@@ -12792,10 +12811,12 @@ MonoBehaviour:
   movementScript: {fileID: 152782630}
   spawnScripts:
   - {fileID: 1734988324}
+  - {fileID: 155062777}
   LevelSound: {fileID: 8300000, guid: d2c12a4f81dc2424f8b7dca5f90452d9, type: 3}
   PortalSound: {fileID: 8300000, guid: 12d41ece912b2ab46bcb3d86db57e82a, type: 3}
   bgmSource: {fileID: 501204361}
   objects: {fileID: 1734988324}
+  divers: {fileID: 155062777}
   texteffect: {fileID: 1295800533}
   fadeCanvas: {fileID: 144679212}
   fadeDuration: 1
@@ -14842,6 +14863,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959523269}
   m_CullTransparentMesh: 1
+--- !u!1 &2002073302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2002073303}
+  m_Layer: 0
+  m_Name: Enemys
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2002073303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002073302}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 155062778}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2041281560
 GameObject:
   m_ObjectHideFlags: 0
@@ -20315,9 +20368,9 @@ SceneRoots:
   - {fileID: 1385395129}
   - {fileID: 1572939000}
   - {fileID: 1734988325}
+  - {fileID: 2002073303}
   - {fileID: 1676816692}
   - {fileID: 2041281561}
-  - {fileID: 395266709}
   - {fileID: 144679213}
   - {fileID: 432772300}
   - {fileID: 1031584384}

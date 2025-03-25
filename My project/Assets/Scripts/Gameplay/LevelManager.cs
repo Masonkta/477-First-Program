@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     private AudioSource audioSource;
     public AudioSource bgmSource; 
     public FlyingObjects objects;
+    public EnemySpawn divers;
     public LevelCompleteEffect texteffect;
     public Canvas fadeCanvas; 
     private CanvasGroup fadeCanvasGroup; 
@@ -23,6 +24,8 @@ public class LevelManager : MonoBehaviour
     public float fadeDuration = 2f; 
     private float startTime;
     private bool Ended;
+
+
 
     void Start()
     {
@@ -36,7 +39,7 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (Time.time - startTime >= 120f)
+        if (Time.time - startTime >= 5f)
         {
             if (!Ended)
             {
@@ -73,6 +76,7 @@ public class LevelManager : MonoBehaviour
         if (objects != null)
         {
             objects.DestroyAllSpawnedObjects();
+            divers.DestroyAllSpawnedObjects();
         }
 
         StartCoroutine(MovePlayerToCenter());
