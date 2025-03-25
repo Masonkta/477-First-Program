@@ -125,8 +125,11 @@ public class FlyingObjects : MonoBehaviour
     IEnumerator EnemyFleet()
     {
         List<GameObject> enemies = new List<GameObject>();
-
-        for (int i = 0; i < 5; i++)
+        int fleetSize = 1;
+        if(SceneManager.GetActiveScene().name.Equals("Level 2")){
+            fleetSize = 5;
+        }
+        for (int i = 0; i < fleetSize; i++)
         {
             enemySpawnpoint.position = new Vector3(enemySpawnpoint.transform.position.x, Random.Range(-3f, 6f), -0.2f);
             GameObject enemy = Instantiate(enemyPrefab, enemySpawnpoint.position, Quaternion.identity);

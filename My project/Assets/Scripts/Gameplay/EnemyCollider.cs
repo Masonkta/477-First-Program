@@ -10,8 +10,8 @@ public class EnemyCollider : MonoBehaviour
     public GameObject rightBoundary;
     public GameObject TopBoundary;
     public GameObject BottomBoundary;
-    public float nextShotTime = 0.2f;
-    public float shotDelay = 0.2f;
+    public float nextShotTime = 0.5f;
+    public float shotDelay = 0.5f;
     public GameObject bulletPrefab; 
     public Transform spawnPoint; 
     public float bulletSpeed = 10f;

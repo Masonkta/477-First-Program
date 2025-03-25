@@ -31,6 +31,7 @@ public class DebrisController : MonoBehaviour
 
             Destroy(gameObject);
             Destroy(explosion, 1f);
+            
         } else if (other.CompareTag("Shield")) {
             Destroy(this.gameObject);
             GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
