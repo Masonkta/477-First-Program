@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FlyingObjects : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class FlyingObjects : MonoBehaviour
                 nextStarTime = Time.time + starDelay;
             }
 
-            if (Time.time > nextDebrisTime)
+            if (Time.time > nextDebrisTime && SceneManager.GetActiveScene().name != "Level 3")
             {
                 FloatingDebris();
                 nextDebrisTime = Time.time + debrisDelay;
@@ -70,7 +71,7 @@ public class FlyingObjects : MonoBehaviour
                 nextPowerUpTime = Time.time + PowerUpDelay;
             }
 
-            if (Time.time > nextEnemyFleetTime)
+            if (Time.time > nextEnemyFleetTime && SceneManager.GetActiveScene().name != "Level 3")
             {
                 StartCoroutine(EnemyFleet());
                 nextEnemyFleetTime = Time.time + enemyFleetDelay;

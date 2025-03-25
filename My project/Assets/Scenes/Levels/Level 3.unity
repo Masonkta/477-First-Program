@@ -13205,7 +13205,7 @@ PrefabInstance:
       objectReference: {fileID: 152782627}
     - target: {fileID: 5954785326187265613, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
       propertyPath: laserFireRate
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5954785326187265613, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
       propertyPath: missleSpawnFreq
@@ -14137,7 +14137,7 @@ MonoBehaviour:
   starSpeed: 5
   debrisDelay: 5
   nextDebrisTime: 5
-  debrisSpawnpoint: {fileID: 1072378394}
+  debrisSpawnpoint: {fileID: 0}
   debris1Prefab: {fileID: 1983161838882677740, guid: 257c6959b544e33409ab6f3cd853cdf1, type: 3}
   debris2Prefab: {fileID: 7686346013296414809, guid: 491235732f06bed4e873b48ed9c4b9d1, type: 3}
   debris3Prefab: {fileID: 5856194942573014981, guid: 176c9de6607918d4ca72a0f41d69051a, type: 3}
@@ -14153,7 +14153,7 @@ MonoBehaviour:
   powerUpSpeed: 0
   nextEnemyFleetTime: 20
   enemyFleetDelay: 20
-  enemySpawnpoint: {fileID: 1072378394}
+  enemySpawnpoint: {fileID: 0}
   enemyPrefab: {fileID: 2246084954188515008, guid: 2e0ad9a37f185494a893acf921f7bde4, type: 3}
   enemySpeed: 7
 --- !u!4 &1734988325
