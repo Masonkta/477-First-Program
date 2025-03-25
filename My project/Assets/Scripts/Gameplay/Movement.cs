@@ -90,6 +90,7 @@ public class Movement : MonoBehaviour
                 hasShield = false;
                 isShielded = true;
                 shieldBarScript.ActivateShield(shieldDelay);
+                GetComponent<Collider2D>().enabled = false;
             }
 
             if (shieldObject != null)
@@ -98,6 +99,7 @@ public class Movement : MonoBehaviour
                 {
                     shieldObject.SetActive(false);
                     isShielded = false;
+                    GetComponent<Collider2D>().enabled = true;
                 }
             }
 
