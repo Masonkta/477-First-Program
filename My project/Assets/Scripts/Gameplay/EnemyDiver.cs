@@ -126,6 +126,7 @@ public class EnemyDiver : MonoBehaviour
             audioSource.PlayOneShot(explosionSound);
             Destroy(explosionEffect, 1f);
             Destroy(this.gameObject);
+            FindObjectOfType<ScoreManager>().updateScore(200);
         }
         else if (other.CompareTag("Player"))
         {

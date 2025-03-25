@@ -24,6 +24,7 @@ public class BulletCollision : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             audioSource.PlayOneShot(explosionSound);
+            FindObjectOfType<ScoreManager>().updateScore(200);
 
             GameObject impact = Instantiate(ImpactPrefab, transform.position, Quaternion.identity);
             GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
@@ -32,12 +33,14 @@ public class BulletCollision : MonoBehaviour
             Destroy(gameObject); 
             Destroy(explosion, 1f);
             Destroy(impact, 1f);
+
         }
         else if (other.CompareTag("Boss"))
         {
             audioSource.PlayOneShot(explosionSound);
 
             GameObject impact = Instantiate(ImpactPrefab, transform.position, Quaternion.identity);
+            FindObjectOfType<ScoreManager>().updateScore(100);
 
             boss.decHealth(1);
             Destroy(gameObject);
