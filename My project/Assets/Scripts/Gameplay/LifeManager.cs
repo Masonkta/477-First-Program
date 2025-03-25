@@ -26,6 +26,8 @@ public class LifeManager : MonoBehaviour
             // Hide the corresponding life icon
             if (lives < lifeIcons.Length)
             {
+                Debug.Log(lives);
+                Debug.Log(lifeIcons.Length);
                 lifeIcons[lives].SetActive(false);
             }
 
@@ -35,6 +37,7 @@ public class LifeManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("GAMEOVER");
                 GameOver();
                 Destroy(playerInstance);
             }

@@ -149,14 +149,14 @@ RectTransform:
   m_GameObject: {fileID: 577971637}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3181818, y: 1.9090909, z: 1}
+  m_LocalScale: {x: 0.5, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1465053204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.84848, y: -15.909088}
+  m_AnchoredPosition: {x: 8, y: -40}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &577971639
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over
+  m_text: congradulations
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8e43d60da9e2b349a8d9c645764ddd9, type: 2}
   m_sharedMaterial: {fileID: 5285613819469206917, guid: c8e43d60da9e2b349a8d9c645764ddd9, type: 2}
@@ -206,8 +206,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -620,7 +620,7 @@ RectTransform:
   m_GameObject: {fileID: 1046965183}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 2.7272727, z: 1}
+  m_LocalScale: {x: 0.5, y: 2.7272727, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 749868738}
@@ -628,7 +628,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: -25}
+  m_AnchoredPosition: {x: 15, y: -25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1046965185
@@ -651,7 +651,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Resume
+  m_text: CONTINUE?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8e43d60da9e2b349a8d9c645764ddd9, type: 2}
   m_sharedMaterial: {fileID: 5285613819469206917, guid: c8e43d60da9e2b349a8d9c645764ddd9, type: 2}

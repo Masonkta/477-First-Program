@@ -13,6 +13,7 @@ public class BulletCollision : MonoBehaviour
     void Start()
     {
         audioSource = Camera.main.GetComponent<AudioSource>();
+        boss = FindAnyObjectByType<Boss>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,9 +24,8 @@ public class BulletCollision : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
+            Debug.Log("Enemy Hit");
             audioSource.PlayOneShot(explosionSound);
-            FindObjectOfType<ScoreManager>().updateScore(200);
-
             GameObject impact = Instantiate(ImpactPrefab, transform.position, Quaternion.identity);
             GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
@@ -33,18 +33,19 @@ public class BulletCollision : MonoBehaviour
             Destroy(gameObject); 
             Destroy(explosion, 1f);
             Destroy(impact, 1f);
-
+            FindObjectOfType<ScoreManager>().updateScore(200);
         }
         else if (other.CompareTag("Boss"))
         {
-            audioSource.PlayOneShot(explosionSound);
+            audioSource.PlayOneShot(bulletHitSound);
+            Debug.Log("BOSS HIT");
 
             GameObject impact = Instantiate(ImpactPrefab, transform.position, Quaternion.identity);
-            FindObjectOfType<ScoreManager>().updateScore(100);
-
-            boss.decHealth(1);
             Destroy(gameObject);
             Destroy(impact, 1f);
+            boss.decHealth(1);
+            FindObjectOfType<ScoreManager>().updateScore(100);
+
         }
         else
         {

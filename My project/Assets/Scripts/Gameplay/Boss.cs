@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Boss : MonoBehaviour{
+public class Boss : MonoBehaviour
+{
     #region publics
     public float health;
     public float bulletSpeed;
@@ -21,10 +22,12 @@ public class Boss : MonoBehaviour{
     public float missleSpawnFreq = 10f;
     public float moveInterval;
     public Slider healthBar;
+    public AudioSource audioSource;
+    public AudioClip VictorySound;
     #endregion
 
     #region privates
-    private float maxHealth = 100f;
+    private float maxHealth = 10f;
     private float nextBulletFire;
     private float nextlaser;
     private float nextmissle;
@@ -32,50 +35,62 @@ public class Boss : MonoBehaviour{
     private Vector3 playerY;
     private Transform bossMove;
     private bool inScreen = false;
+    public SpriteRenderer spriteRenderer; 
     #endregion
 
     // Start is called before the first frame update
-    void Start(){
+    void Start()
+    {
         health = maxHealth;
         bossMove = transform;
         bossMove.Translate(new Vector3(8.5f, 0, 0));
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = Camera.main.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    void Update(){
-        //healthBar.value = health/maxHealth;
-
-        if (bossMove.position.x > 3.5) {
+    void Update()
+    {
+        if (bossMove.position.x > 3.5)
+        {
             bossMove.Translate(Vector3.left * moveSpeed * Time.deltaTime);
             health = maxHealth;
-        } else {
+        }
+        else
+        {
             inScreen = true;
         }
 
-        if (inScreen) {
-            // Attack timings, prioities: spawning, laser, bullets
-            if (nextmissle > missleSpawnFreq) {
+        if (inScreen)
+        {
+            if (nextmissle > missleSpawnFreq)
+            {
                 spawnMissles();
                 nextmissle = 0;
             }
-            else if (nextlaser > laserFireRate) {
+            else if (nextlaser > laserFireRate)
+            {
                 FindObjectOfType<LaserBeamFade>().FireLaser();
                 nextmissle -= 4.5f;
                 nextlaser = 0;
                 nextBulletFire = -4.5f;
                 moveTimer -= 4.5f;
             }
-            else if (nextBulletFire > bulletFireRate) {
+            else if (nextBulletFire > bulletFireRate)
+            {
                 shoot();
                 nextBulletFire = 0;
             }
 
-            // move based on player space, move every 5 seconds
-            if (moveTimer > moveInterval) {
+            if (moveTimer > moveInterval)
+            {
                 playerY = new Vector3(bossMove.transform.position.x, playerPos.position.y, 0);
-                if (playerPos.position.y > 2.5) {
+                if (playerPos.position.y > 2.5)
+                {
                     playerY = new Vector3(bossMove.transform.position.x, 2.5f, 0);
-                } else if (playerPos.position.y < -2) {
+                }
+                else if (playerPos.position.y < -2)
+                {
                     playerY = new Vector3(bossMove.transform.position.x, -2, 0);
                 }
                 moveTimer = 0;
@@ -87,37 +102,57 @@ public class Boss : MonoBehaviour{
             nextBulletFire += Time.deltaTime;
             moveTimer += Time.deltaTime;
         }
-    }   
+    }
 
-
-    void shoot() {
-        if (Math.Abs(playerPos.position.y - bulletSpawnTop.position.y) < Math.Abs(playerPos.position.y - bulletSpawnBottom.position.y)) { 
+    void shoot()
+    {
+        if (Math.Abs(playerPos.position.y - bulletSpawnTop.position.y) < Math.Abs(playerPos.position.y - bulletSpawnBottom.position.y))
+        {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnTop);
-        } else {
+        }
+        else
+        {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnBottom);
         }
     }
 
-    void spawnMissles() {
+    void spawnMissles()
+    {
         GameObject missleT = Instantiate(misslePrefab, missleSpawnTop);
         missleT.GetComponent<Missle>().playerPos = playerPos;
         GameObject missleB = Instantiate(misslePrefab, missleSpawnBottom);
         missleB.GetComponent<Missle>().playerPos = playerPos;
     }
 
-    void moveToPlayer() {
+    void moveToPlayer()
+    {
         bossMove.position = Vector3.MoveTowards(bossMove.position, playerY, moveSpeed * Time.deltaTime);
     }
 
-    public void decHealth(float amount) {
+    public void decHealth(float amount)
+    {
+        Debug.Log("Boss health loss");
         health -= amount;
-        if (health < 0) {
+        StartCoroutine(FlashEffect()); // Trigger hit flash effect
+
+        if (health < 0)
+        {
             health = 0;
             nextmissle -= 40000f;
             nextlaser -= 400000;
             nextBulletFire = -450000f;
             moveTimer -= 450000f;
-            // death animation
+            audioSource.PlayOneShot(VictorySound);
+            FindObjectOfType<LevelManager>().EndLevel();
+            Destroy(gameObject);
         }
+    }
+
+    IEnumerator FlashEffect()
+    {
+        Debug.Log("FLASH");
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f); 
+        spriteRenderer.color = Color.white; 
     }
 }

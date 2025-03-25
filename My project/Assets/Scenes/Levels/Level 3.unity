@@ -6467,6 +6467,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624335205}
   m_CullTransparentMesh: 1
+--- !u!1 &767474945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 767474948}
+  - component: {fileID: 767474947}
+  - component: {fileID: 767474946}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &767474946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767474945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c5b098f8a4fd0439ec2f436c53b476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainText: {fileID: 624335206}
+  accentText: {fileID: 1772076101}
+--- !u!114 &767474947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767474945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 539cd6de08dc83347a30b14ff8db4984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wormholePrefab: {fileID: 4188815541616108030, guid: 7c527f6148316884da5d39962f23aa46, type: 3}
+  wormholeSpawnPoint: {fileID: 1589852670}
+  gameInstance: {fileID: 1772434712}
+  movementScript: {fileID: 152782630}
+  spawnScripts:
+  - {fileID: 0}
+  LevelSound: {fileID: 8300000, guid: d2c12a4f81dc2424f8b7dca5f90452d9, type: 3}
+  PortalSound: {fileID: 8300000, guid: 12d41ece912b2ab46bcb3d86db57e82a, type: 3}
+  bgmSource: {fileID: 1016234233}
+  objects: {fileID: 1734988324}
+  divers: {fileID: 0}
+  texteffect: {fileID: 767474946}
+  fadeCanvas: {fileID: 144679212}
+  fadeDuration: 1
+--- !u!4 &767474948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767474945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1589852670}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &772786031
 GameObject:
   m_ObjectHideFlags: 0
@@ -6517,7 +6591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.65787435, b: 0, a: 1}
+  m_Color: {r: 0.56318617, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11848,7 +11922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.050980393}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12079,7 +12153,7 @@ GameObject:
   - component: {fileID: 1056595487}
   - component: {fileID: 1056595486}
   m_Layer: 5
-  m_Name: Level Text
+  m_Name: Boss Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12101,7 +12175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: -25}
+  m_AnchoredPosition: {x: 81, y: -25}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056595486
@@ -12124,7 +12198,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level
+  m_text: 'Boss
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8e43d60da9e2b349a8d9c645764ddd9, type: 2}
   m_sharedMaterial: {fileID: 5285613819469206917, guid: c8e43d60da9e2b349a8d9c645764ddd9, type: 2}
@@ -12697,38 +12773,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1114372600
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1114372602}
-  m_Layer: 0
-  m_Name: LevelManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1114372602
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114372600}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1627693314}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1117142244 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9115512358402781837, guid: 6af93e2fe500ff84093c2791620bc5d0, type: 3}
@@ -12935,6 +12979,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1278355233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5954785326187265613, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
+  m_PrefabInstance: {fileID: 1399948853}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cd86f2b70b4bb43b4905116d80ceae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1347051608
 GameObject:
   m_ObjectHideFlags: 0
@@ -13200,17 +13255,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5954785326187265613, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1450843030}
+    - target: {fileID: 5954785326187265613, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
       propertyPath: playerPos
       value: 
       objectReference: {fileID: 152782627}
     - target: {fileID: 5954785326187265613, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
-      propertyPath: laserFireRate
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5954785326187265613, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
-      propertyPath: missleSpawnFreq
-      value: 10
-      objectReference: {fileID: 0}
+      propertyPath: VictorySound
+      value: 
+      objectReference: {fileID: 8300000, guid: f7b5e1d1bc49d334db9fc3a39aa413b0, type: 3}
     - target: {fileID: 7396917495918001445, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -13230,9 +13285,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1450843028}
   - component: {fileID: 1450843030}
-  - component: {fileID: 1450843029}
+  - component: {fileID: 1450843031}
   m_Layer: 5
-  m_Name: Level Bar
+  m_Name: Boss Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13258,20 +13313,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: -550}
   m_SizeDelta: {x: 150, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1450843029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1450843027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37ea86921e8fa6458f4804e9a2bc700, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 1450843030}
-  duration: 120
 --- !u!114 &1450843030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13323,6 +13364,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1450843031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450843027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcf8a4228b5a4e458386d13eff1839c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 1450843030}
+  boss: {fileID: 1278355233}
 --- !u!1 &1451668837
 GameObject:
   m_ObjectHideFlags: 0
@@ -13865,7 +13920,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1627693313
+--- !u!1 &1589852669
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13873,7 +13928,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1627693314}
+  - component: {fileID: 1589852670}
   m_Layer: 0
   m_Name: WormHole Spawn Point
   m_TagString: Untagged
@@ -13881,20 +13936,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1627693314
+--- !u!4 &1589852670
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627693313}
+  m_GameObject: {fileID: 1589852669}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1114372602}
+  m_Father: {fileID: 767474948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1676816689
 GameObject:
@@ -20350,5 +20405,5 @@ SceneRoots:
   - {fileID: 144679213}
   - {fileID: 432772300}
   - {fileID: 1031584384}
-  - {fileID: 1114372602}
   - {fileID: 1399948853}
+  - {fileID: 767474948}

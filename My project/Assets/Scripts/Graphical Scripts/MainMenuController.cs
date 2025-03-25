@@ -5,11 +5,10 @@ using UnityEngine.InputSystem;
 public class MainMenuController : MonoBehaviour
 {
     public GameObject onePlayerArrow;
-    public GameObject twoPlayerArrow;
     public GameObject settingsArrow;
 
     private int selectedOption = 1;
-    private int totalOptions = 3; 
+    private int totalOptions = 2;
 
     void Start()
     {
@@ -43,11 +42,8 @@ public class MainMenuController : MonoBehaviour
         if (onePlayerArrow != null)
             onePlayerArrow.SetActive(selectedOption == 1);
 
-        if (twoPlayerArrow != null)
-            twoPlayerArrow.SetActive(selectedOption == 2);
-
         if (settingsArrow != null)
-            settingsArrow.SetActive(selectedOption == 3);
+            settingsArrow.SetActive(selectedOption == 2);
     }
 
     void ExecuteSelection()
@@ -59,12 +55,7 @@ public class MainMenuController : MonoBehaviour
                 SceneManager.LoadScene("Main Scene");
                 break;
 
-            case 2: // Two Player Mode
-                PlayerPrefs.SetInt("PlayerMode", 2);
-                SceneManager.LoadScene("Main Scene");
-                break;
-
-            case 3: // Open Settings
+            case 2: // Open Settings
                 SceneManager.LoadScene("Title Settings");
                 break;
         }

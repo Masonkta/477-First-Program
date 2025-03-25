@@ -39,11 +39,14 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (Time.time - startTime >= 120f)
+        if (SceneManager.GetActiveScene().name != "Level 3")
         {
-            if (!Ended)
+            if (Time.time - startTime >= 120f)
             {
-                EndLevel();
+                if (!Ended)
+                {
+                    EndLevel();
+                }
             }
         }
     }
@@ -71,12 +74,18 @@ public class LevelManager : MonoBehaviour
                 spawner.enabled = false;
         }
 
-
-        // Destroy all spawned objects
-        if (objects != null)
+        if (SceneManager.GetActiveScene().name != "Level 3")
         {
-            objects.DestroyAllSpawnedObjects();
-            divers.DestroyAllSpawnedObjects();
+            // Destroy all spawned objects
+            if (objects != null)
+            {
+                objects.DestroyAllSpawnedObjects();
+                divers.DestroyAllSpawnedObjects();
+            }
+            else
+            {
+                objects.DestroyAllSpawnedObjects();
+            }
         }
 
         StartCoroutine(MovePlayerToCenter());
@@ -152,6 +161,10 @@ public class LevelManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level 2")
         {
             SceneManager.LoadScene("Level 3");
+        }
+        if (SceneManager.GetActiveScene().name == "Level 3")
+        {
+            SceneManager.LoadScene("Victory Screen");
         }
     }
 

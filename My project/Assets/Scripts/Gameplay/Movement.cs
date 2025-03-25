@@ -59,14 +59,7 @@ public class Movement : MonoBehaviour
             {
                 Shoot();
                 audioSource.PlayOneShot(soundEffect);
-                if (input.Jump.ReadValue<float>() != 0 && Time.time >= nextFireTime)
-                {
-                    Shoot();
-                    audioSource.PlayOneShot(soundEffect);
-                    energyBarScript.FireLaser(fireRate);
-                    nextFireTime = Time.time + fireRate;
-                }
-
+                energyBarScript.FireLaser(fireRate);
                 nextFireTime = Time.time + fireRate;
             }
 

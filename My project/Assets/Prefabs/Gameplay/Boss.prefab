@@ -10548,7 +10548,7 @@ MonoBehaviour:
   misslePrefab: {fileID: 9009320523104213663, guid: 00d8e78819379f94cb16a796cc71fb53, type: 3}
   missleSpawnTop: {fileID: 3572838167354620777}
   missleSpawnBottom: {fileID: 2069412958959993490}
-  missleSpawnFreq: 3
+  missleSpawnFreq: 10
   moveInterval: 3
   healthBar: {fileID: 0}
 --- !u!1 &8284837939547191725
