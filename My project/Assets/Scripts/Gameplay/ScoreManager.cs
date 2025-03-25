@@ -7,9 +7,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public TMP_Text scoreText;
-    private float score = 0;
-    private float timer = 0;
-    private float timeBonus = 1;
+    public float score = 0;
 
     public void updateScore(float pointVal)
     {
@@ -17,20 +15,17 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = score.ToString("0000000");
     }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        DontDestroyOnLoad(gameObject);
+        scoreText = GameObject.Find("Score Value").GetComponent<TextMeshProUGUI>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > 10)
+        if (scoreText == null)
         {
-            updateScore(timeBonus * 100);
-            timeBonus++;
-            timer = 0;
+            scoreText = GameObject.Find("Score Value").GetComponent<TextMeshProUGUI>();
+            updateScore(0);
         }
     }
 }

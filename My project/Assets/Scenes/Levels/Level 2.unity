@@ -765,6 +765,7 @@ MonoBehaviour:
   thruster: {fileID: 265654993}
   hasShield: 0
   shieldDelay: 5
+  isShielded: 0
   shield: {fileID: 4013908730682979495, guid: 3c26fef464332e1458ae3be5873ee875, type: 3}
   hasFireRateUp: 0
   hasFireRateDown: 0
@@ -12437,7 +12438,6 @@ GameObject:
   - component: {fileID: 1181107426}
   - component: {fileID: 1181107428}
   - component: {fileID: 1181107427}
-  - component: {fileID: 1181107429}
   m_Layer: 5
   m_Name: Score Value
   m_TagString: Untagged
@@ -12561,19 +12561,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181107425}
   m_CullTransparentMesh: 1
---- !u!114 &1181107429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181107425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e58c3505c94630499cc35b65567d6d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1181107427}
 --- !u!1 &1195921551
 GameObject:
   m_ObjectHideFlags: 0
