@@ -18,9 +18,8 @@ public class LaserCollider : MonoBehaviour {
 
     }
 
-    // think where to put it
-    void OnTriggerStay(Collider other) {
-        if (other.CompareTag("Player")) {
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.CompareTag("Player") && !collision.GetComponent<Movement>().isShielded) {
             Debug.Log("laser hit player!");
 
             FindObjectOfType<LifeManager>().LoseLife();
@@ -31,5 +30,15 @@ public class LaserCollider : MonoBehaviour {
 
             Destroy(explosion, 1f);
         }
+        //else if (collision.CompareTag("Shield"))
+        //{
+        //    Destroy(this.gameObject);
+        //    GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        //    audioSource.PlayOneShot(explosionSound);
+
+        //    Destroy(explosion, 1f);
+        //    Destroy(this.gameObject);
+        //}
     }
 }

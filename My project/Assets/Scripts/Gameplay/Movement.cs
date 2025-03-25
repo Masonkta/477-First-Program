@@ -26,6 +26,7 @@ public class Movement : MonoBehaviour
     public bool hasShield = false; 
     public float shieldDelay = 5f; 
     private float shieldShutOffTime;
+    public bool isShielded = false;
     public GameObject shield;
     public bool hasFireRateUp = false;
     public bool hasFireRateDown = false;
@@ -84,10 +85,11 @@ public class Movement : MonoBehaviour
 
             if (hasShield && shieldObject != null)
             {
+                shieldObject.SetActive(true);
                 shieldShutOffTime = Time.time + shieldDelay;
                 hasShield = false;
+                isShielded = true;
                 shieldBarScript.ActivateShield(shieldDelay);
-                shieldObject.SetActive(true);
             }
 
             if (shieldObject != null)
@@ -95,6 +97,7 @@ public class Movement : MonoBehaviour
                 if (shieldShutOffTime < Time.time)
                 {
                     shieldObject.SetActive(false);
+                    isShielded = false;
                 }
             }
 

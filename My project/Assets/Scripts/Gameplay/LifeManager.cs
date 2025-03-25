@@ -49,8 +49,8 @@ public class LifeManager : MonoBehaviour
         if (playerInstance != null)
         {
             playerInstance.transform.position = respawnPoint.position;
-            playerInstance.SetActive(true);
             playerInstance.GetComponent<Movement>().hasShield = true;
+            playerInstance.SetActive(true);
 
         }
 

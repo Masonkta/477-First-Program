@@ -39,13 +39,11 @@ public class Boss : MonoBehaviour{
         health = maxHealth;
         bossMove = transform;
         bossMove.Translate(new Vector3(8.5f, 0, 0));
-        misslePrefab.GetComponent<Missle>().playerPos = playerPos;
     }
 
     // Update is called once per frame
     void Update(){
         //healthBar.value = health/maxHealth;
-        print(playerPos.position);
 
         if (bossMove.position.x > 3.5) {
             bossMove.Translate(Vector3.left * moveSpeed * Time.deltaTime);
@@ -59,9 +57,6 @@ public class Boss : MonoBehaviour{
             if (nextmissle > missleSpawnFreq) {
                 spawnMissles();
                 nextmissle = 0;
-                nextBulletFire -= 5f;
-                nextlaser -= 5f;
-                moveTimer -= 5f;
             }
             else if (nextlaser > laserFireRate) {
                 FindObjectOfType<LaserBeamFade>().FireLaser();
@@ -104,14 +99,10 @@ public class Boss : MonoBehaviour{
     }
 
     void spawnMissles() {
-        for (int i = 0; i < 4; i++) {
-            if (i % 2 == 0) {
-                GameObject missle = Instantiate(misslePrefab, missleSpawnTop);
-            } else {
-                GameObject missle = Instantiate(misslePrefab, missleSpawnTop);
-            }
-            
-        }
+        GameObject missleT = Instantiate(misslePrefab, missleSpawnTop);
+        missleT.GetComponent<Missle>().playerPos = playerPos;
+        GameObject missleB = Instantiate(misslePrefab, missleSpawnBottom);
+        missleB.GetComponent<Missle>().playerPos = playerPos;
     }
 
     void moveToPlayer() {

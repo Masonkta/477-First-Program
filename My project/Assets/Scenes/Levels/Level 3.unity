@@ -659,6 +659,7 @@ MonoBehaviour:
   thruster: {fileID: 265654993}
   hasShield: 0
   shieldDelay: 5
+  isShielded: 0
   shield: {fileID: 4013908730682979495, guid: 3c26fef464332e1458ae3be5873ee875, type: 3}
   hasFireRateUp: 0
   hasFireRateDown: 0
@@ -13202,6 +13203,14 @@ PrefabInstance:
       propertyPath: playerPos
       value: 
       objectReference: {fileID: 152782627}
+    - target: {fileID: 5954785326187265613, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
+      propertyPath: laserFireRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954785326187265613, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
+      propertyPath: missleSpawnFreq
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7396917495918001445, guid: 8ced67a9eb2641c4b81f670117353b6b, type: 3}
       propertyPath: m_Name
       value: Boss
